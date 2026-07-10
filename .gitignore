@@ -2,3 +2,6 @@ node_modules/
 dist/
 .astro/
 .claude/settings.local.json
+
+# Raw video source — the compressed web version is hero.mp4
+public/assets/Worldsrobotvideo.mp4
