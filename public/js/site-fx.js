@@ -180,4 +180,33 @@
     });
   }
 
+  /* ---------- homepage hero video: nudge autoplay past mobile blockers ----------
+     iOS Safari refuses autoplay in Low Power Mode / Data Saver and after
+     bfcache restores, leaving a play-button glyph over the video. Call
+     play() explicitly, retry on first touch and page restore, and hide
+     the video (revealing the static photo) if playback stays blocked. */
+  var heroVideo = document.querySelector('.hero__video');
+  if (heroVideo) {
+    if (reduced) {
+      heroVideo.removeAttribute('autoplay');
+      heroVideo.style.display = 'none';
+    } else {
+      heroVideo.muted = true; // some WebKit builds ignore the HTML attr for autoplay policy
+      var tryPlay = function () {
+        var p = heroVideo.play();
+        if (p && p.then) {
+          p.then(function () { heroVideo.style.visibility = ''; })
+           .catch(function () { heroVideo.style.visibility = 'hidden'; });
+        }
+      };
+      tryPlay();
+      window.addEventListener('touchend', tryPlay, { once: true, passive: true });
+      window.addEventListener('pointerdown', tryPlay, { once: true });
+      window.addEventListener('pageshow', function () { if (heroVideo.paused) tryPlay(); });
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden && heroVideo.paused) tryPlay();
+      });
+    }
+  }
+
 })();
