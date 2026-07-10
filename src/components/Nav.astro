@@ -11,6 +11,7 @@ const items = [
   { label: 'CONTACT', href: '/contact/', key: 'contact' },
 ];
 ---
+<div class={overlay ? 'nav-holder nav-holder--overlay' : 'nav-holder'}>
 <header class={overlay ? 'nav nav--overlay' : 'nav'}>
   <a class="nav__brand" href="/">
     <img class="nav__logo" src="/assets/logo-white.png" alt="Team 3314 logo">
@@ -38,3 +39,4 @@ const items = [
   ))}
   <a href="/join/">JOIN THE TEAM</a>
 </nav>
+</div>

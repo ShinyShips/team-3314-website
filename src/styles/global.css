@@ -86,6 +86,13 @@ input:focus, textarea:focus, select:focus {
 
 /* ---------- nav ---------- */
 
+.nav-holder { position: sticky; top: 0; z-index: 50; }
+.nav-holder--overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+}
+
 .nav {
   background: var(--maroon);
   display: flex;
@@ -131,11 +138,8 @@ input:focus, textarea:focus, select:focus {
 
 /* Home overlay variant — transparent nav over the hero video */
 .nav--overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0;
   background: none;
   padding: 22px var(--pad-x);
-  z-index: 10;
 }
 .nav--overlay .nav__logo { height: 46px; }
 .nav--overlay .nav__link { color: rgba(255,255,255,.85); }

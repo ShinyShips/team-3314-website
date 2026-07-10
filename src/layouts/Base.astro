@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 
 const { title, description } = Astro.props;
+const ogImage = new URL('/assets/og-image.jpg', Astro.site);
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +13,20 @@ const { title, description } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FRC Team 3314 — The Mechanical Mustangs">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Team 3314's robot competing on the field during a match">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImage}>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
