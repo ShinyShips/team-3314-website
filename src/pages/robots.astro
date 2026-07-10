@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import SeasonCard from '../components/SeasonCard.astro';
+import seasons from '../data/seasons.json';
+---
+<Base title="Robots & Competition — FRC Team 3314, The Mechanical Mustangs" description="Fifteen seasons of student-built FRC machines from Team 3314, the Mechanical Mustangs of Clifton High School — 2025 FIRST Mid-Atlantic District Champions.">
+
+<Nav active="robots" />
+
+<main id="main">
+
+  <!-- HERO — championship -->
+  <section class="hero">
+    <img class="hero__img" src="/assets/2025DCMP.jpg" alt="Team 3314 with the 2025 FIRST Mid-Atlantic District Championship winner banner">
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="eyebrow eyebrow--light">ROBOTS &amp; COMPETITION</p>
+      <h1 class="hero__title">2025 District Champions</h1>
+      <p class="hero__lede">Fifteen seasons of student-built machines &mdash; designed, machined, wired, and programmed in our warehouse shop.</p>
+    </div>
+  </section>
+
+  <!-- SEASON ARCHIVE -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2 class="section-title">Season archive</h2>
+      <a class="mono-link" href="https://www.thebluealliance.com/team/3314" target="_blank" rel="noopener">FULL RECORD ON THE BLUE ALLIANCE &rarr;</a>
+    </div>
+    <div class="card-grid">
+      {seasons.map((s) => <SeasonCard {...s} />)}
+    </div>
+  </section>
+
+  <!-- HOW WE BUILD -->
+  <section class="split split--white reveal">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">02 &mdash; HOW WE BUILD</p>
+      <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Student hands on every part</h2>
+      <p class="split__text">Students learn machining, CAD, programming, and electrical systems &mdash; then own real subsystems on a competition machine. Many arrive with zero engineering exposure; they graduate leading design reviews.</p>
+      <ul class="tags" role="list">
+        <li class="tag">MACHINING</li>
+        <li class="tag">CAD</li>
+        <li class="tag">PROGRAMMING</li>
+        <li class="tag">ELECTRICAL</li>
+        <li class="tag">STRATEGY &amp; SCOUTING</li>
+      </ul>
+    </div>
+    <img class="split__img" src="/assets/StudentsAtMill.jpg" alt="Students machining a part at the mill">
+  </section>
+
+  <!-- NEXT PAGE CTA -->
+  <section class="next reveal">
+    <div class="next__label">
+      <p class="eyebrow eyebrow--muted">NEXT</p>
+      <p class="next__title">The partners who make it possible</p>
+    </div>
+    <a class="btn" href="/sponsors/">SPONSORS &rarr;</a>
+  </section>
+
+</main>
+
+</Base>

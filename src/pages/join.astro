@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="Join the Team — FRC Team 3314" description="No experience. No dues. No barriers. FRC Team 3314 is open to every Clifton High School student.">
+
+<Nav active="join" />
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero hero--join">
+    <img class="hero__img" src="/assets/stands.jpg" alt="Students in the stands holding up 3314 number signs and teammate face cutouts">
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="eyebrow eyebrow--light">JOIN THE TEAM</p>
+      <h1 class="hero__title">No experience.<br>No dues. No barriers.</h1>
+      <p class="hero__lede">Open to every Clifton High School student. Most of us arrived never having touched a power tool.</p>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section reveal">
+    <h2 class="section-title" style="margin-bottom:44px">01 &mdash; What being a Mustang means</h2>
+    <div class="card-grid">
+      <div class="feature">
+        <h3 class="feature__title">Real engineering</h3>
+        <p class="feature__text">Machining, CAD, programming, electrical &mdash; you'll own real subsystems on a competition robot, with mentors beside you.</p>
+      </div>
+      <div class="feature">
+        <h3 class="feature__title">A family</h3>
+        <p class="feature__text">Nightly meals during build season, covered travel, and a shop where everyone has a seat at the table.</p>
+      </div>
+      <div class="feature">
+        <h3 class="feature__title">A future</h3>
+        <p class="feature__text">100% of alumni pursue post-secondary paths; 92% land in STEM fields. Scholarships, networks, and mentorship included.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBTEAMS -->
+  <section class="split split--white reveal">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">02 &mdash; FIND YOUR PLACE</p>
+      <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Six ways in</h2>
+      <p class="split__text">Robots need more than builders. Whatever you're into, there's a subteam that needs you.</p>
+      <ul class="tags tags--wide" role="list">
+        <li class="tag">MECHANICAL</li>
+        <li class="tag">PROGRAMMING</li>
+        <li class="tag">CAD &amp; DESIGN</li>
+        <li class="tag">ELECTRICAL</li>
+        <li class="tag">OUTREACH &amp; MEDIA</li>
+        <li class="tag">STRATEGY &amp; SCOUTING</li>
+      </ul>
+    </div>
+    <img class="split__img" src="/assets/RampRiot.jpg" alt="Students cheering at the Ramp Riot competition">
+  </section>
+
+  <!-- HOW TO JOIN -->
+  <section class="band band--cta reveal" style="gap:28px">
+    <p class="eyebrow eyebrow--band">03 &mdash; HOW TO JOIN</p>
+    <h2 class="band__title band__title--xl" style="max-width:760px">Just show up</h2>
+    <p class="band__text">Find us at the Clifton High club fair, DM us on Instagram, or email us &mdash; we'll tell you when the next meeting is. That's it.</p>
+    <div class="band__actions">
+      <a class="btn btn--white" href="mailto:admin@frc3314.com">admin@frc3314.com</a>
+      <a class="btn btn--ghost" href="https://instagram.com/team3314" target="_blank" rel="noopener">@team3314</a>
+    </div>
+    <div class="form-card">
+      <span class="form-kicker">OR SEND A QUICK NOTE</span>
+      <div class="form-grid">
+        <div class="field">
+          <label class="field__label" for="jn-name">YOUR NAME</label>
+          <input class="field__input" id="jn-name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="field__label" for="jn-grade">GRADE</label>
+          <select class="field__input" id="jn-grade">
+            <option>9th</option>
+            <option>10th</option>
+            <option>11th</option>
+            <option>12th</option>
+            <option>Parent / guardian</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field__label" for="jn-team">MOST INTERESTED IN</label>
+        <select class="field__input" id="jn-team">
+          <option>Not sure yet</option>
+          <option>Mechanical</option>
+          <option>Programming</option>
+          <option>CAD &amp; Design</option>
+          <option>Electrical</option>
+          <option>Outreach &amp; Media</option>
+          <option>Strategy &amp; Scouting</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field__label" for="jn-msg">ANYTHING YOU WANT US TO KNOW (OPTIONAL)</label>
+        <textarea class="field__input" id="jn-msg" rows="3"></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="btn" id="join-send" type="button">I WANT TO JOIN &rarr;</button>
+        <span class="form-status" id="join-status" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</Base>

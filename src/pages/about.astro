@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Marquee from '../components/Marquee.astro';
+import universities from '../data/universities.json';
+import employers from '../data/employers.json';
+---
+<Base title="About — FRC Team 3314, The Mechanical Mustangs" description="Team 3314 exists to prove that where you're from doesn't decide what you can build. Meet the Mechanical Mustangs of Clifton, NJ.">
+
+<Nav active="about" />
+
+<main id="main">
+
+  <!-- PAGE HEADER — photo -->
+  <section class="page-header page-header--photo">
+    <img class="page-header__img" src="/assets/CliftonHigh.webp" alt="Clifton High School with its mustang mural">
+    <div class="page-header__scrim" aria-hidden="true"></div>
+    <div class="page-header__content">
+      <p class="eyebrow eyebrow--light">ABOUT US</p>
+      <h1 class="page-header__title">Ordinary students.<br>Extraordinary outcomes.</h1>
+      <p class="page-header__lede" style="color:rgba(255,255,255,.9)">Team 3314 exists to prove that where you're from doesn't decide what you can build.</p>
+    </div>
+  </section>
+
+  <!-- OUR COMMUNITY -->
+  <section class="split reveal">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">01 &mdash; OUR COMMUNITY</p>
+      <h2 class="split__title">Clifton, New Jersey</h2>
+      <p class="split__text">Clifton is one of NJ's most diverse cities &mdash; nearly 40% of residents identify as Hispanic or Latino, over a third are foreign-born, and more than half speak a language other than English at home. For most students here, a future in STEM feels like something that happens to other people, in other places.</p>
+      <p class="split__text">We exist to change that.</p>
+    </div>
+    <div class="split__copy" style="padding:clamp(32px,6vw,96px) clamp(24px,5vw,72px)">
+      <div class="stat-grid stat-grid--2col">
+        <div class="stat-grid__cell">
+          <span class="stat-grid__num" data-count>75%</span>
+          <span class="stat-grid__label">MINORITY ENROLLMENT AT CLIFTON HIGH</span>
+        </div>
+        <div class="stat-grid__cell">
+          <span class="stat-grid__num" data-count>61%</span>
+          <span class="stat-grid__label">ECONOMICALLY DISADVANTAGED STUDENTS</span>
+        </div>
+        <div class="stat-grid__cell">
+          <span class="stat-grid__num" data-count>14%</span>
+          <span class="stat-grid__label">PROFICIENT IN SCIENCE</span>
+        </div>
+        <div class="stat-grid__cell">
+          <span class="stat-grid__num" data-count>50%+</span>
+          <span class="stat-grid__label">SPEAK A LANGUAGE OTHER THAN ENGLISH AT HOME</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURE -->
+  <section class="split split--white reveal">
+    <img class="split__img split__img--tall" src="/assets/TeamDinner.jpg" alt="Team dinner in the shop">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">02 &mdash; OUR CULTURE</p>
+      <h2 class="split__title">A family first</h2>
+      <p class="split__text">Finances should never be a barrier to passion. Team dues are eliminated entirely through year-round fundraising. We provide nightly family-style meals during build season, cover travel and hotel stays, and make sure every student &mdash; regardless of economic status &mdash; has a seat at the table and a voice in design sessions.</p>
+      <div class="checklist">
+        <div class="checklist__row"><span class="checklist__arrow">&rarr;</span><span class="checklist__text">$0 dues &mdash; funded through year-round fundraising</span></div>
+        <div class="checklist__row"><span class="checklist__arrow">&rarr;</span><span class="checklist__text">Nightly meals during build season, plus weekends</span></div>
+        <div class="checklist__row"><span class="checklist__arrow">&rarr;</span><span class="checklist__text">No student turned away &mdash; ever</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES TABLE -->
+  <section class="section reveal">
+    <div class="section-head" style="margin-bottom:8px">
+      <h2 class="section-title">03 &mdash; Proven outcomes</h2>
+      <span class="kicker">ANNUAL ALUMNI SURVEY</span>
+    </div>
+    <div class="outcomes">
+      <div class="outcomes__row">
+        <span class="outcomes__idx">01</span>
+        <span class="outcomes__num" data-count>100%</span>
+        <span class="outcomes__desc">of alumni pursue post-secondary education &mdash; 95% attend college or university.</span>
+      </div>
+      <div class="outcomes__row">
+        <span class="outcomes__idx">02</span>
+        <span class="outcomes__num" data-count>92%</span>
+        <span class="outcomes__desc">work in STEM or STEM-adjacent fields after graduation.</span>
+      </div>
+      <div class="outcomes__row">
+        <span class="outcomes__idx">03</span>
+        <span class="outcomes__num" data-count>$1.5M+</span>
+        <span class="outcomes__desc">earned in scholarships, breaking down financial barriers to opportunity.</span>
+      </div>
+      <div class="outcomes__row">
+        <span class="outcomes__idx">04</span>
+        <span class="outcomes__num" data-count>83%</span>
+        <span class="outcomes__desc">higher starting salaries than the NJ average for adults under 25 &mdash; 4-year members earn 60% more than their peers.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFTER THE TEAM -->
+  <section class="section--white" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(48px,7vw,88px) 0;background:#fff">
+    <div class="section-head" style="margin-bottom:16px;padding:0 var(--pad-x)">
+      <h2 class="section-title">Where Mustangs go next</h2>
+      <span class="kicker">04 &mdash; AFTER THE TEAM</span>
+    </div>
+    <p style="margin:0 0 44px;font:400 16.5px/1.6 var(--font-display);color:var(--body);max-width:680px;padding:0 var(--pad-x);text-wrap:pretty">100% of our alumni pursue post-secondary education. A sample of where recent Mustangs study and work:</p>
+    <span class="marquee-label">UNIVERSITIES</span>
+    <Marquee wrapClass="marquee--gap" label="Universities our alumni attend" trackClass="marquee__track--unis" wide logos={universities} />
+    <span class="marquee-label">EMPLOYERS</span>
+    <Marquee label="Employers of our alumni" trackClass="marquee__track--employers" wide logos={employers} />
+  </section>
+
+  <!-- LEADERSHIP PIPELINE -->
+  <section class="band band--split band--split-flush reveal">
+    <div class="band__copy band__copy--pad">
+      <p class="eyebrow eyebrow--band">05 &mdash; THE PIPELINE</p>
+      <h2 class="band__title">Students rise. Then they reach back.</h2>
+      <p class="band__text" style="max-width:440px">Our 2025 Dean's List winner, Kristia Nahas, grew from curious rookie to technical leader and mentor. She's not the exception &mdash; she's the product of a system built to do this for every student. Four alumni currently mentor FIRST teams; one interned at FIRST Headquarters.</p>
+      <div class="pipeline pipeline--light">
+        <span class="pipeline__step">STUDENT</span>
+        <span class="pipeline__sep">&rarr;</span>
+        <span class="pipeline__step">GRADUATE</span>
+        <span class="pipeline__sep">&rarr;</span>
+        <span class="pipeline__step">MENTOR</span>
+      </div>
+    </div>
+    <img class="split__img split__img--short" src="/assets/Kristia.jpg" alt="Kristia Nahas, 2025 Dean's List winner">
+  </section>
+
+</main>
+
+</Base>

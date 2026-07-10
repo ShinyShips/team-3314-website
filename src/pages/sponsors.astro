@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Marquee from '../components/Marquee.astro';
+import sponsors from '../data/sponsors.json';
+---
+<Base title="Sponsors & Partners — FRC Team 3314" description="Every dollar and mentor hour keeps STEM free for every student in Clifton. Sponsor FRC Team 3314, the Mechanical Mustangs.">
+
+<Nav active="sponsors" />
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <p class="eyebrow eyebrow--dim">SPONSORS &amp; PARTNERS</p>
+    <h1 class="page-header__title">Built to last,<br>together</h1>
+    <p class="page-header__lede">Every dollar and mentor hour keeps STEM free for every student in Clifton &mdash; and funds outreach that reaches thousands more.</p>
+  </section>
+
+  <!-- WHAT FUNDING DOES -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2 class="section-title">01 &mdash; Where your support goes</h2>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-grid__cell">
+        <span class="stat-grid__num" data-count>$0</span>
+        <span class="stat-grid__label">DUES &mdash; EVERY STUDENT PARTICIPATES FREE</span>
+      </div>
+      <div class="stat-grid__cell">
+        <span class="stat-grid__num" data-count>3</span>
+        <span class="stat-grid__label">FLL TEAMS FULLY FUNDED IN OUR DISTRICT</span>
+      </div>
+      <div class="stat-grid__cell">
+        <span class="stat-grid__num" data-count>$13K+</span>
+        <span class="stat-grid__label">IN TAKE-HOME STEM BAGS FOR CLIFTON KIDS</span>
+      </div>
+      <div class="stat-grid__cell">
+        <span class="stat-grid__num" data-count>1000s</span>
+        <span class="stat-grid__label">REACHED ANNUALLY THROUGH EVENTS &amp; DEMOS</span>
+      </div>
+    </div>
+    <p style="margin:20px 0 0;font:400 14px/1.6 var(--font-display);color:var(--muted);max-width:640px">Funding covers registration, materials, machining stock, nightly build-season meals, travel, and outreach events &mdash; nothing goes to salaries or overhead.</p>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section section--white reveal">
+    <div class="section-head">
+      <h2 class="section-title">02 &mdash; Our partners</h2>
+      <span class="kicker">FUNDING &middot; MATERIALS &middot; MENTORS &middot; ADVOCACY</span>
+    </div>
+    <div class="card-grid">
+      <div class="panel">
+        <span class="panel__kicker">ENGINEERING</span>
+        <h3 class="panel__title">Montclair Society of Engineers</h3>
+        <p class="panel__text">Our deepest partnership &mdash; mentors, operational support, and co-hosting NJ's largest FLL qualifier.</p>
+      </div>
+      <div class="panel">
+        <span class="panel__kicker">CORPORATE</span>
+        <h3 class="panel__title">L3Harris &amp; DoDSTEM</h3>
+        <p class="panel__text">Funding, materials, and advocacy that keep the program sustainable year over year.</p>
+      </div>
+      <div class="panel">
+        <span class="panel__kicker">COMMUNITY</span>
+        <h3 class="panel__title">Mountainside Hospital &amp; Patel Brothers</h3>
+        <p class="panel__text">Local partners providing funding, meals, and connections across Clifton and beyond.</p>
+      </div>
+    </div>
+    <Marquee wrapClass="marquee--framed" label="Our sponsors" logos={sponsors} />
+  </section>
+
+  <!-- PRESS -->
+  <section class="press">
+    <span class="eyebrow eyebrow--muted">AS FEATURED IN</span>
+    <div class="press__names">
+      <span class="press__name">Clifton Merchant</span>
+      <span class="press__name">Clifton Times</span>
+      <span class="press__name">Picatinny Family Day</span>
+      <span class="press__name">NJ Manufacturing Day</span>
+    </div>
+  </section>
+
+  <!-- SPONSOR CTA -->
+  <section class="band band--cta reveal">
+    <p class="eyebrow eyebrow--band">03 &mdash; BECOME A SPONSOR</p>
+    <h2 class="band__title band__title--xl">Invest in a proven pipeline</h2>
+    <p class="band__text">92% of our alumni enter STEM fields. Your support turns Clifton students into the engineers your industry needs.</p>
+    <div class="band__actions">
+      <a class="btn btn--white" href="mailto:admin@frc3314.com">EMAIL admin@frc3314.com</a>
+    </div>
+  </section>
+
+</main>
+
+</Base>

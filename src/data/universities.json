@@ -1,0 +1,42 @@
+[
+  {
+    "src": "/assets/logos/rutgers.png",
+    "alt": "Rutgers University",
+    "height": 42
+  },
+  {
+    "src": "/assets/logos/njit.png",
+    "alt": "NJIT",
+    "height": 42
+  },
+  {
+    "src": "/assets/logos/stevens.png",
+    "alt": "Stevens Institute of Technology",
+    "height": 48
+  },
+  {
+    "src": "/assets/logos/columbia.png",
+    "alt": "Columbia University",
+    "height": 48
+  },
+  {
+    "src": "/assets/logos/vt.png",
+    "alt": "Virginia Tech",
+    "height": 48
+  },
+  {
+    "src": "/assets/logos/wpi.png",
+    "alt": "Worcester Polytechnic Institute",
+    "height": 48
+  },
+  {
+    "src": "/assets/logos/harveymudd.png",
+    "alt": "Harvey Mudd College",
+    "height": 48
+  },
+  {
+    "src": "/assets/logos/northeastern.png",
+    "alt": "Northeastern University",
+    "height": 48
+  }
+]

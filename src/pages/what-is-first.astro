@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="What is FRC? — FRC Team 3314" description="FIRST — For Inspiration and Recognition of Science and Technology — combines the excitement of sport with the rigors of science and technology.">
+
+<Nav active="first" />
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <section class="page-header page-header--tight">
+    <p class="eyebrow eyebrow--dim">FIRST ROBOTICS COMPETITION</p>
+    <h1 class="page-header__title">What is FRC?</h1>
+    <p class="page-header__lede" style="max-width:620px">FIRST &mdash; For Inspiration and Recognition of Science and Technology &mdash; is a global robotics community that combines the excitement of sport with the rigors of science and technology.</p>
+  </section>
+
+  <!-- THE COMPETITION -->
+  <section class="split reveal">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">01 &mdash; THE FIRST ROBOTICS COMPETITION</p>
+      <h2 class="split__title">A varsity sport for the mind</h2>
+      <p class="split__text">Every January, a brand-new game is revealed. Teams of high schoolers get roughly six weeks to design, machine, wire, and program a competition robot &mdash; then face off in alliance-based matches at packed district events, working toward the World Championship.</p>
+      <p class="split__text">Students do the work. Mentors from real engineering careers teach alongside them. It's as close to running a small aerospace company as high school gets.</p>
+    </div>
+    <img class="split__img" src="/assets/VarsitySport.jpg" alt="Team 3314 driving in a packed match at the FIRST Championship">
+  </section>
+
+  <!-- SEASON TIMELINE -->
+  <section class="section section--white reveal">
+    <div class="section-head">
+      <h2 class="section-title">02 &mdash; How a season works</h2>
+      <span class="kicker">JANUARY &rarr; DECEMBER</span>
+    </div>
+    <div class="timeline">
+      <div class="timeline__step">
+        <span class="timeline__month">JANUARY</span>
+        <div class="timeline__track"><div class="timeline__line"></div><div class="timeline__dot"></div></div>
+        <div class="timeline__body">
+          <h3 class="timeline__title">Kickoff</h3>
+          <p class="timeline__text">The game is revealed worldwide. Strategy, prototyping, and design start the same day.</p>
+        </div>
+      </div>
+      <div class="timeline__step">
+        <span class="timeline__month">JAN &mdash; FEB</span>
+        <div class="timeline__track"><div class="timeline__line"></div><div class="timeline__dot"></div></div>
+        <div class="timeline__body">
+          <h3 class="timeline__title">Build season</h3>
+          <p class="timeline__text">Six weeks of CAD, machining, wiring, and code &mdash; nightly, with family-style dinners in the shop.</p>
+        </div>
+      </div>
+      <div class="timeline__step">
+        <span class="timeline__month">MARCH</span>
+        <div class="timeline__track"><div class="timeline__line"></div><div class="timeline__dot"></div></div>
+        <div class="timeline__body">
+          <h3 class="timeline__title">District events</h3>
+          <p class="timeline__text">Three-day competitions across the FIRST Mid-Atlantic district &mdash; qualification matches, alliance selections, playoffs.</p>
+        </div>
+      </div>
+      <div class="timeline__step">
+        <span class="timeline__month">APRIL</span>
+        <div class="timeline__track"><div class="timeline__line"></div><div class="timeline__dot"></div></div>
+        <div class="timeline__body">
+          <h3 class="timeline__title">Championships</h3>
+          <p class="timeline__text">Top teams advance to the District Championship &mdash; we won it in 2025 &mdash; and on to the FIRST Championship.</p>
+        </div>
+      </div>
+      <div class="timeline__step">
+        <span class="timeline__month">MAY &mdash; DECEMBER</span>
+        <div class="timeline__track"><div class="timeline__line timeline__line--fade"></div><div class="timeline__dot"></div></div>
+        <div class="timeline__body">
+          <h3 class="timeline__title">Offseason</h3>
+          <p class="timeline__text">A more relaxed schedule &mdash; new-member training, workshops, offseason competitions, and outreach across Clifton.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE LADDER -->
+  <section class="split reveal">
+    <img class="split__img split__img--short" src="/assets/FLL3.jpg" alt="Middle schoolers at an FLL Challenge table at our qualifier">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">03 &mdash; A LADDER, NOT A LEAGUE</p>
+      <h2 class="split__title">From LEGO to 120-pound robots</h2>
+      <p class="split__text">FIRST starts kids as young as four with LEGO-based challenges (FIRST LEGO League) and carries them through to FRC in high school. We run and fund three FLL teams in Clifton's middle schools, so the ladder starts in our own city.</p>
+      <div class="pipeline" style="margin-top:0">
+        <span class="pipeline__step">FLL DISCOVER</span>
+        <span class="pipeline__sep">&rarr;</span>
+        <span class="pipeline__step">FLL CHALLENGE</span>
+        <span class="pipeline__sep">&rarr;</span>
+        <span class="pipeline__step">FRC</span>
+      </div>
+      <a class="mono-link mono-link--lg" href="/teams/">THE TEAMS WE RUN &amp; MENTOR &rarr;</a>
+    </div>
+  </section>
+
+  <!-- MORE THAN ROBOTS -->
+  <section class="band band--cta reveal">
+    <p class="eyebrow eyebrow--band">04 &mdash; MORE THAN ROBOTS</p>
+    <h2 class="band__title band__title--xl">Gracious professionalism</h2>
+    <p class="band__text band__text--wide">FIRST's core value: compete like crazy, and treat everyone with respect while you do it. Teams lend parts and mentors to their rivals mid-competition &mdash; it's why we mentor the same teams we face on the field. FIRST students are also eligible for over $80M in dedicated scholarships.</p>
+    <div class="band__actions">
+      <a class="btn btn--white" href="/join/">JOIN THE TEAM</a>
+      <a class="btn btn--ghost" href="https://www.firstinspires.org" target="_blank" rel="noopener">FIRSTINSPIRES.ORG &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+</Base>

@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="Contact — FRC Team 3314" description="Sponsorship, joining, mentoring, press — talk to FRC Team 3314, the Mechanical Mustangs of Clifton High School.">
+
+<Nav active="contact" />
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <section class="page-header page-header--tight">
+    <p class="eyebrow eyebrow--dim">CONTACT</p>
+    <h1 class="page-header__title">Talk to the team</h1>
+    <p class="page-header__lede">Sponsorship, joining, mentoring, press &mdash; we answer everything.</p>
+  </section>
+
+  <!-- FORM + INFO -->
+  <section class="contact-grid reveal">
+    <div class="contact-form">
+      <p class="eyebrow eyebrow--wide">01 &mdash; SEND A MESSAGE</p>
+      <div class="form-grid form-grid--wide">
+        <div class="field field--roomy">
+          <label class="field__label" for="ct-name">YOUR NAME</label>
+          <input class="field__input field__input--roomy" id="ct-name" type="text" autocomplete="name">
+        </div>
+        <div class="field field--roomy">
+          <label class="field__label" for="ct-email">YOUR EMAIL</label>
+          <input class="field__input field__input--roomy" id="ct-email" type="email" autocomplete="email">
+        </div>
+      </div>
+      <div class="field field--roomy">
+        <label class="field__label" for="ct-topic">I'M REACHING OUT ABOUT</label>
+        <select class="field__input field__input--roomy" id="ct-topic">
+          <option>Sponsorship</option>
+          <option>Joining the team</option>
+          <option>Mentoring</option>
+          <option>Outreach or events</option>
+          <option>Press</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field field--roomy">
+        <label class="field__label" for="ct-msg">MESSAGE</label>
+        <textarea class="field__input field__input--roomy" id="ct-msg" rows="6"></textarea>
+      </div>
+      <div class="form-actions" style="gap:16px">
+        <button class="btn btn--form" id="contact-send" type="button">SEND MESSAGE &rarr;</button>
+        <span class="form-status" id="contact-status" role="status" aria-live="polite"></span>
+      </div>
+      <span class="form-note">Opens your email app addressed to admin@frc3314.com &mdash; nothing is stored here.</span>
+    </div>
+    <div class="contact-aside">
+      <img class="contact-aside__img" src="/assets/HappyStudents.jpg" alt="Two Mustangs carrying the team flag and driver station at the FIRST Championship">
+      <p class="eyebrow eyebrow--wide">02 &mdash; OTHER WAYS</p>
+      <div class="contact-way">
+        <span class="contact-way__label">EMAIL</span>
+        <a class="contact-way__value" href="mailto:admin@frc3314.com">admin@frc3314.com</a>
+      </div>
+      <div class="contact-way">
+        <span class="contact-way__label">INSTAGRAM</span>
+        <a class="contact-way__value" href="https://instagram.com/team3314" target="_blank" rel="noopener">@team3314</a>
+      </div>
+      <div class="contact-way">
+        <span class="contact-way__label">FIND US</span>
+        <span class="contact-way__addr">Clifton High School<br>333 Colfax Avenue, Clifton, NJ 07013</span>
+      </div>
+      <div class="contact-way">
+        <span class="contact-way__label">COMPETITION RECORD</span>
+        <a class="contact-way__value" href="https://www.thebluealliance.com/team/3314" target="_blank" rel="noopener">The Blue Alliance &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</Base>

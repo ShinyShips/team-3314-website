@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="Teams We Run & Mentor — FRC Team 3314" description="From fully funding middle school FLL teams to walking rookie FRC teams through their first build season — the FIRST teams Team 3314 runs and mentors.">
+
+<Nav active="teams" />
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <p class="eyebrow eyebrow--dim">THE FIRST COMMUNITY</p>
+    <h1 class="page-header__title">We build teams,<br>not just robots</h1>
+    <p class="page-header__lede">From fully funding middle school FLL teams to walking rookie FRC teams through their first build season.</p>
+  </section>
+
+  <!-- FLL TEAMS -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2 class="section-title">01 &mdash; FLL teams we run</h2>
+      <span class="kicker">FULLY FUNDED &middot; UNIFORMS &middot; COMPETITION TABLES</span>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <img class="card__img card__img--short" src="/assets/WWMSFLL.jpg" alt="Woodrow Wilson Mechanical Mustangs at the FLL table">
+        <div class="card__body card__body--tall">
+          <p class="eyebrow">FLL 3784</p>
+          <h3 class="card__title card__title--sm">Woodrow Wilson MS</h3>
+          <p class="card__text card__text--rm">Mentored and fully funded &mdash; qualified for the State Championship this season.</p>
+        </div>
+      </article>
+      <article class="card">
+        <img class="card__img card__img--short" src="/assets/CCMSFLLMentoring.jpg" alt="CCMS Mechanical Mustangs at the FLL competition table">
+        <div class="card__body card__body--tall">
+          <p class="eyebrow">FLL 3785</p>
+          <h3 class="card__title card__title--sm">Christopher Columbus MS</h3>
+          <p class="card__text card__text--rm">The CCMS Mechanical Mustangs &mdash; several of our current members started here.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__placeholder">
+          <span class="card__placeholder-main">TEAM PHOTO COMING SOON</span>
+          <span class="card__placeholder-sub">JUST FORMED &mdash; 2025</span>
+        </div>
+        <div class="card__body card__body--tall">
+          <p class="eyebrow">FLL 70926</p>
+          <h3 class="card__title card__title--sm">Maple Valley MS</h3>
+          <p class="card__text card__text--rm">Started by us in 2025 &mdash; all expenses funded, competition tables built, long-term mentor in place.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FRC MENTORING -->
+  <section class="split split--white reveal">
+    <img class="split__img split__img--xtall" src="/assets/StGeorge.jpg" alt="Weekend build session mentoring 10997 St. George in our shop">
+    <div class="split__copy" style="gap:24px">
+      <p class="eyebrow eyebrow--wide">02 &mdash; FRC MENTORING</p>
+      <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Rookie season, covered</h2>
+      <div class="roster">
+        <div class="roster__item">
+          <span class="roster__team">9424 EAST ORANGE JAGBOTS</span>
+          <span class="roster__desc">Rookie season through year three &mdash; weekend build sessions in our shop, machining, mechanism design, competition support.</span>
+        </div>
+        <div class="roster__item">
+          <span class="roster__team">9100 ROBOROSES &middot; BELMAR</span>
+          <span class="roster__desc">Quick Build support, shop access, and an event-ready robot for our off-season event.</span>
+        </div>
+        <div class="roster__item">
+          <span class="roster__team">10997 ST. GEORGE</span>
+          <span class="roster__desc">Weekend shop support, hardware installs, and steady mentor-to-mentor communication this season.</span>
+        </div>
+      </div>
+      <p class="split__text" style="max-width:460px;font-size:15px;line-height:1.6">Every January we host kickoff events with workshops, quick builds, and strategy breakdowns &mdash; and publish our team packets for anyone to use.</p>
+    </div>
+  </section>
+
+  <!-- EVENTS BAND -->
+  <section class="band band--split reveal">
+    <div class="band__copy">
+      <p class="eyebrow eyebrow--band">03 &mdash; EVENTS WE HOST</p>
+      <h2 class="band__title">The largest FLL qualifier in New Jersey</h2>
+      <p class="band__text">Co-hosted with the Montclair Society of Engineers &mdash; 48 teams annually. We also led the American Robotics Open Championship at Liberty Science Center in 2025, returning at Drew University in 2026.</p>
+    </div>
+    <div class="band__imgpair">
+      <img src="/assets/AmericanDreamFLL.jpg" alt="Crowd at a co-hosted FLL event">
+      <img src="/assets/AROC2026.jpg" alt="American Robotics Open Championship 2026 at Drew University">
+    </div>
+  </section>
+
+  <!-- MANEUVER -->
+  <section class="dark-band reveal">
+    <div class="dark-band__grid">
+      <div class="dark-band__copy">
+        <p class="eyebrow eyebrow--dark">04 &mdash; OPEN SOURCE</p>
+        <h2 class="dark-band__title">Maneuver</h2>
+        <p class="dark-band__text">Our open-source scouting app grew from an internal tool into a global framework &mdash; free, elite-level analytics for any team, on any device, in any condition. It levels the playing field for teams without a software squad.</p>
+        <div class="ministats ministats--dark">
+          <div class="ministat"><span class="ministat__num" data-count>6,000+</span><span class="ministat__label">USERS</span></div>
+          <div class="ministat"><span class="ministat__num" data-count>10+</span><span class="ministat__label">COUNTRIES</span></div>
+          <div class="ministat"><span class="ministat__num" data-count>25+</span><span class="ministat__label">PROJECT FORKS</span></div>
+        </div>
+        <a class="btn btn--on-dark" href="https://www.frc-maneuver.com/" target="_blank" rel="noopener">VISIT FRC-MANEUVER.COM &rarr;</a>
+      </div>
+      <div>
+        <img class="dark-band__shot" src="/assets/ManeuverScout.png" alt="Maneuver scouting interface for the 2026 game">
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT PAGE CTA -->
+  <section class="next next--white reveal">
+    <div class="next__label">
+      <p class="eyebrow eyebrow--muted">NEXT</p>
+      <p class="next__title">Our robots &amp; competition history</p>
+    </div>
+    <a class="btn" href="/robots/">ROBOTS &rarr;</a>
+  </section>
+
+</main>
+
+</Base>

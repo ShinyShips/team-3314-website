@@ -1,0 +1,40 @@
+---
+const { active = '', overlay = false } = Astro.props;
+
+const items = [
+  { label: 'WHAT IS FRC?', href: '/what-is-first/', key: 'first' },
+  { label: 'ABOUT', href: '/about/', key: 'about' },
+  { label: 'OUTREACH', href: '/outreach/', key: 'outreach' },
+  { label: 'TEAMS', href: '/teams/', key: 'teams' },
+  { label: 'ROBOTS', href: '/robots/', key: 'robots' },
+  { label: 'SPONSORS', href: '/sponsors/', key: 'sponsors' },
+  { label: 'CONTACT', href: '/contact/', key: 'contact' },
+];
+---
+<header class={overlay ? 'nav nav--overlay' : 'nav'}>
+  <a class="nav__brand" href="/">
+    <img class="nav__logo" src="/assets/logo-white.png" alt="Team 3314 logo">
+    <span class="nav__wordmark">FRC 3314</span>
+  </a>
+  <nav class="nav__links" id="nav-links" aria-label="Primary">
+    {items.map((i) => (
+      <a
+        class={i.key === active ? 'nav__link nav__link--active' : 'nav__link'}
+        href={i.href}
+        aria-current={i.key === active ? 'page' : undefined}
+      >{i.label}</a>
+    ))}
+    <a class="nav__cta" href="/join/">JOIN THE TEAM</a>
+  </nav>
+  <button class="nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-panel">
+    <span class="nav__bar"></span>
+    <span class="nav__bar"></span>
+    <span class="nav__bar"></span>
+  </button>
+</header>
+<nav class={overlay ? 'nav-panel nav-panel--overlay' : 'nav-panel'} id="nav-panel" aria-label="Primary, mobile" hidden>
+  {items.map((i) => (
+    <a href={i.href} aria-current={i.key === active ? 'page' : undefined}>{i.label}</a>
+  ))}
+  <a href="/join/">JOIN THE TEAM</a>
+</nav>

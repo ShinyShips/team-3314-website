@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="Outreach — FRC Team 3314, The Mechanical Mustangs" description="STEM Family Nights, Girls Who Code, inclusion robotics, and community service — hands-on STEM for hundreds of Clifton kids every year.">
+
+<Nav active="outreach" />
+
+<main id="main">
+
+  <!-- PAGE HEADER — maroon (prototype default) -->
+  <section class="page-header">
+    <p class="eyebrow eyebrow--dim">COMMUNITY OUTREACH</p>
+    <h1 class="page-header__title">STEM for our<br>whole city</h1>
+    <p class="page-header__lede">Hands-on STEM for hundreds of Clifton kids every year &mdash; run entirely by our students.</p>
+  </section>
+
+  <!-- STEM NIGHTS -->
+  <section class="split reveal">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">01 &mdash; STEM FAMILY NIGHTS</p>
+      <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">A local tradition, four years running</h2>
+      <p class="split__text">Annual themed nights at Clifton elementary Schools 9, 13, and 17 &mdash; from "Outer Space" to "Pirates" to "SPRING into STEM." Our students run every station, deliver presentations, and demo robots live. Every child leaves with a take-home STEM bag we fund and build ourselves.</p>
+      <div class="ministats">
+        <div class="ministat"><span class="ministat__num" data-count>~65</span><span class="ministat__label">KIDS PER EVENT</span></div>
+        <div class="ministat"><span class="ministat__num" data-count>$10</span><span class="ministat__label">STEM BAG PER CHILD</span></div>
+        <div class="ministat"><span class="ministat__num" data-count>3</span><span class="ministat__label">PARTNER SCHOOLS</span></div>
+      </div>
+    </div>
+    <img class="split__img" src="/assets/SpringIntoStem.jpg" alt="Kids playing ring toss with the robot at SPRING into STEM">
+  </section>
+
+  <!-- GIRLS WHO CODE -->
+  <section class="split split--white reveal">
+    <div class="split__badge-wrap">
+      <img class="split__badge" src="/assets/girls-who-code.jpg" alt="Girls Who Code logo">
+    </div>
+    <div class="split__copy" style="background:var(--paper)">
+      <p class="eyebrow eyebrow--wide">02 &mdash; GIRLS WHO CODE</p>
+      <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Closing the gender gap</h2>
+      <p class="split__text">Founded and run by our female team leads, our Girls Who Code chapter supports 30+ young women monthly in a program now in its second year &mdash; a supportive space to explore programming and directly address the gender gap in STEM at Clifton High School.</p>
+    </div>
+  </section>
+
+  <!-- INCLUSION -->
+  <section class="split reveal">
+    <div class="split__copy">
+      <p class="eyebrow eyebrow--wide">03 &mdash; INCLUSION</p>
+      <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Robots that make everyone smile</h2>
+      <p class="split__text">With Clifton High's Unified Club, we host robotics inclusion events for students with disabilities &mdash; like our Snowman Robot, built from a prior-year competition machine with LED lights and a top hat. Our annual Halloween Extravaganza turns the school into a multi-room experience, complete with a candy-delivering Ghost Robot. With the Girl Scouts, our students have helped 25 scouts earn their Robotics Petals.</p>
+    </div>
+    <img class="split__img" src="/assets/Snowman.jpg" alt="The Snowman Robot built for the Unified Club event">
+  </section>
+
+  <!-- SERVICE -->
+  <section class="band band--deep reveal">
+    <div class="band__intro">
+      <p class="eyebrow eyebrow--band">04 &mdash; SERVICE</p>
+      <h2 class="band__title" style="line-height:1.05">Engineering with empathy</h2>
+      <p class="band__text" style="max-width:none">We believe STEM leaders must also be community leaders. Our technical skills are tools for service.</p>
+    </div>
+    <div class="card-grid">
+      <div class="band-card">
+        <span class="band-card__kicker">VETERANS</span>
+        <h3 class="band-card__title">Veterans' Home of NJ</h3>
+        <p class="band-card__text">50 wreaths and $5,000 donated with Wreath It To Us in 2025. Annual Valentines for Veterans letters, bracelets, and 3D-printed gifts. Students fundraised SPEAX communication systems and humidifiers for a veteran battling ALS.</p>
+      </div>
+      <div class="band-card">
+        <span class="band-card__kicker">HOSPITAL</span>
+        <h3 class="band-card__title">CARE Club at St. Joseph's</h3>
+        <p class="band-card__text">Monthly visits bringing robots, crafts, and "bags of love" to pediatric patients &mdash; proof that engineering can deliver comfort and joy.</p>
+      </div>
+      <div class="band-card">
+        <span class="band-card__kicker">BASIC NEEDS</span>
+        <h3 class="band-card__title">Drives all year long</h3>
+        <p class="band-card__text">200+ birthday-supply sets donated to local food pantries since 2023, plus ongoing clothing, hygiene, and period-product drives, a Little Free Pantry, and our school's Rewards Closet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT PAGE CTA -->
+  <section class="next next--white reveal">
+    <div class="next__label">
+      <p class="eyebrow eyebrow--muted">NEXT</p>
+      <p class="next__title">The FIRST teams we mentor</p>
+    </div>
+    <a class="btn" href="/teams/">TEAMS &rarr;</a>
+  </section>
+
+</main>
+
+</Base>
