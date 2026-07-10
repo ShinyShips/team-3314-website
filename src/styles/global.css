@@ -636,7 +636,13 @@ input:focus, textarea:focus, select:focus {
   padding: 36px 0;
 }
 .marquee--strip { background: var(--paper); border-bottom: 1px solid var(--line); padding: 40px 0; }
-.marquee__track { display: flex; width: max-content; animation: fx-marquee 44s linear infinite; }
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: fx-marquee 44s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
 .marquee__track--unis { animation-duration: 32s; }
 .marquee__track--employers { animation-duration: 38s; animation-direction: reverse; }
 .marquee__row { display: flex; gap: 72px; padding-right: 72px; align-items: center; }

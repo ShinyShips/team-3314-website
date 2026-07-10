@@ -180,15 +180,21 @@
     });
   }
 
-  /* ---------- homepage hero video: keep captions off ---------- */
+  /* ---------- homepage hero video: skip on mobile, keep captions off ---------- */
   var yt = document.getElementById('heroYt');
   if (yt) {
-    setInterval(function () {
-      if (!yt.contentWindow) return;
-      ['captions', 'cc'].forEach(function (m) {
-        yt.contentWindow.postMessage(
-          JSON.stringify({ event: 'command', func: 'unloadModule', args: [m] }), '*');
-      });
-    }, 1000);
+    var isMobile = window.matchMedia && matchMedia('(max-width: 940px)').matches;
+    if (isMobile) {
+      yt.remove();
+    } else {
+      yt.src = yt.dataset.src;
+      setInterval(function () {
+        if (!yt.contentWindow) return;
+        ['captions', 'cc'].forEach(function (m) {
+          yt.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'unloadModule', args: [m] }), '*');
+        });
+      }, 1000);
+    }
   }
 })();
