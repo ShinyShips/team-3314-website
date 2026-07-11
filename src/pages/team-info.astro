@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+
+// Live-data links (calendar + Drive folder). The same IDs live in
+// public/js/team-info.js — change them in both places.
+const calendarId = 'c_c959a4578dd5c16bbe9eeee35486f91e59a4325a9f30b016bdf8f5dfa5079e3f@group.calendar.google.com';
+const folderUrl = 'https://drive.google.com/drive/folders/1W_8LpI5kH1tUo1uloYdfw5_pGWILaQnc';
+const calendarUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}&ctz=America/New_York`;
+const subscribeUrl = `https://calendar.google.com/calendar/render?cid=${calendarId}`;
+---
+<Base title="Team Info — FRC Team 3314" description="Meeting times, the team calendar, forms, and parent information for FRC Team 3314 students and families — all in one place.">
+
+<Nav active="team-info" />
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <section class="page-header page-header--tight">
+    <p class="eyebrow eyebrow--dim">FOR STUDENTS &amp; PARENTS</p>
+    <h1 class="page-header__title">Team info</h1>
+    <p class="page-header__lede">Meeting times, upcoming dates, forms, and parent information &mdash; everything you need, in one place.</p>
+  </section>
+
+  <!-- QUICK INFO -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2 class="section-title">The basics</h2>
+      <span class="kicker">AT A GLANCE</span>
+    </div>
+    <div class="ti-quick">
+      <!-- PLACEHOLDER: replace with the real meeting schedule -->
+      <div class="ti-quick__cell">
+        <span class="ti-quick__label">MEETINGS</span>
+        <span class="ti-quick__value">Mon &middot; Wed &middot; Fri</span>
+        <span class="ti-quick__sub">3:00&ndash;6:00 PM &mdash; hours extend during build season. Check the calendar below for changes.</span>
+      </div>
+      <div class="ti-quick__cell">
+        <span class="ti-quick__label">WHERE</span>
+        <span class="ti-quick__value">Clifton High School</span>
+        <!-- PLACEHOLDER: add the real room -->
+        <span class="ti-quick__sub">333 Colfax Avenue, Clifton, NJ 07013 &mdash; the robotics shop.</span>
+      </div>
+      <div class="ti-quick__cell">
+        <span class="ti-quick__label">QUESTIONS?</span>
+        <span class="ti-quick__value"><a href="mailto:admin@frc3314.com">admin@frc3314.com</a></span>
+        <span class="ti-quick__sub">Parents and students alike &mdash; or use the <a href="/contact/">contact page</a>.</span>
+      </div>
+      <div class="ti-quick__cell">
+        <span class="ti-quick__label">STAY IN THE LOOP</span>
+        <!-- PLACEHOLDER: swap in the team's real day-to-day channel (Remind, Discord, ...) -->
+        <span class="ti-quick__value"><a href="https://instagram.com/team3314" target="_blank" rel="noopener">@team3314</a></span>
+        <span class="ti-quick__sub">Follow us on Instagram, and add the team calendar below so nothing sneaks up on you.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="section section--white reveal">
+    <div class="section-head">
+      <h2 class="section-title">Calendar</h2>
+      <span class="kicker">ALL TIMES EASTERN &middot; UPDATED LIVE</span>
+    </div>
+    <div class="ti-toolbar">
+      <div class="ti-toggle" role="group" aria-label="Calendar view">
+        <button id="ti-view-list" type="button" aria-pressed="false">LIST</button>
+        <button id="ti-view-month" type="button" aria-pressed="false">MONTH</button>
+      </div>
+      <div class="ti-links">
+        <a class="mono-link" href={subscribeUrl} target="_blank" rel="noopener">ADD TO YOUR GOOGLE CALENDAR &#8599;</a>
+        <a class="mono-link" href={calendarUrl} target="_blank" rel="noopener">OPEN IN GOOGLE CALENDAR &#8599;</a>
+      </div>
+    </div>
+    <div id="ti-calendar" aria-live="polite">
+      <p class="ti-status">LOADING EVENTS&hellip;</p>
+    </div>
+  </section>
+
+  <!-- DOCUMENTS -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2 class="section-title">Documents</h2>
+      <span class="kicker">FORMS &middot; HANDBOOKS &middot; PARENT INFO</span>
+    </div>
+    <div id="ti-docs" aria-live="polite">
+      <p class="ti-status">LOADING DOCUMENTS&hellip;</p>
+    </div>
+    <p class="ti-note">Documents open in Google Drive. Can&rsquo;t find something? <a class="mono-link" href={folderUrl} target="_blank" rel="noopener">BROWSE THE FULL FOLDER &#8599;</a></p>
+  </section>
+
+  <!-- NEXT PAGE CTA -->
+  <section class="next next--white reveal">
+    <div class="next__label">
+      <p class="eyebrow eyebrow--muted">NEXT</p>
+      <p class="next__title">Questions? Talk to the team</p>
+    </div>
+    <a class="btn" href="/contact/">CONTACT &rarr;</a>
+  </section>
+
+</main>
+
+<script src="/js/team-info.js" defer is:inline></script>
+
+</Base>
