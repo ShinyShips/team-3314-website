@@ -2,8 +2,8 @@
 
 The public site for FRC Team 3314, the Mechanical Mustangs of Clifton High School.
 Built with [Astro](https://astro.build): static HTML output, no client framework —
-the only JavaScript shipped is `public/js/site-fx.js` (page transitions, scroll
-reveals, stat count-ups, mobile nav, and the mailto contact/join forms) and
+the only JavaScript shipped is `public/js/site-fx.js` (scroll reveals, stat
+count-ups, mobile nav, and the mailto contact/join forms) and
 `public/js/team-info.js` (the live calendar + documents on the Team Info page).
 
 ## Commands
@@ -100,6 +100,7 @@ and `playlist=<id>`).
 
 - Images: resize to ~1600px wide max and compress before adding (big camera
   originals will slow the site down).
-- Internal links are root-relative with trailing slashes (`/robots/`), which is
-  what the page-transition script in `site-fx.js` keys on.
+- Internal links are root-relative with trailing slashes (`/robots/`) for URL
+  consistency. Page navigations crossfade via native CSS view transitions
+  (`@view-transition` in `global.css`) — no JS involved.
 - Styling is plain CSS classes in `global.css` — no Tailwind, no CSS-in-JS.

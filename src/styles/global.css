@@ -201,7 +201,9 @@ input:focus, textarea:focus, select:focus {
 
 /* ---------- hero (photo) ---------- */
 
-.hero { position: relative; height: min(560px, 75vw); background: var(--hero-base); overflow: hidden; }
+/* overflow: clip (not hidden) — hidden would make the hero a scroll
+   container, which breaks the view() parallax timeline below. */
+.hero { position: relative; height: min(560px, 75vw); background: var(--hero-base); overflow: clip; }
 .hero--join { height: min(520px, 80vw); }
 .hero--home { height: 100vh; min-height: 720px; }
 
@@ -258,6 +260,29 @@ input:focus, textarea:focus, select:focus {
 .hero--home .hero__lede { margin-top: 6px; font-size: 19px; line-height: 1.5; color: rgba(255,255,255,.88); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
 
+/* Scroll parallax on the photo heroes (Join, Robots, About). The image is
+   30% taller than its container and drifts down as the hero scrolls out, so
+   it appears to move slower than the page. Pure CSS scroll-driven animation:
+   unsupported browsers and reduced-motion users get the static image.
+   Excludes the homepage hero — that's a video. */
+@supports (animation-timeline: view()) {
+  @keyframes px-drift { from { transform: translateY(-23%); } to { transform: translateY(0); } }
+  .hero:not(.hero--home) .hero__img,
+  .page-header--photo .page-header__img {
+    height: 130%;
+    animation: px-drift linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero:not(.hero--home) .hero__img,
+    .page-header--photo .page-header__img {
+      height: 100%;
+      animation: none;
+    }
+  }
+}
+
 /* ---------- page header (maroon or photo) ---------- */
 
 .page-header {
@@ -266,7 +291,7 @@ input:focus, textarea:focus, select:focus {
   display: flex; flex-direction: column; gap: 18px;
 }
 .page-header--tight { padding-bottom: clamp(40px, 6vw, 72px); }
-.page-header--photo { position: relative; background: var(--hero-base); overflow: hidden; }
+.page-header--photo { position: relative; background: var(--hero-base); overflow: clip; }
 .page-header__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .page-header__scrim {
   position: absolute; inset: 0;
@@ -958,6 +983,27 @@ button.ti-cell:hover { background: var(--paper); }
 
 /* ---------- scroll reveals & transitions ---------- */
 
+/* Page navigations slide-and-fade via native cross-document view
+   transitions. Browsers without support just navigate instantly — no JS
+   fallback. Same direction on back/forward; direction-aware would need JS. */
+@view-transition { navigation: auto; }
+
+@keyframes vt-slide-out { to { opacity: 0; transform: translateX(-44px); } }
+@keyframes vt-slide-in { from { opacity: 0; transform: translateX(44px); } }
+::view-transition-old(root) { animation: vt-slide-out .3s var(--ease-lift) both; }
+::view-transition-new(root) { animation: vt-slide-in .3s var(--ease-lift) both; }
+
+/* Back/forward traversals slide the opposite way. The data-vt-back attr is
+   set during the transition by the pagereveal script in Base.astro. */
+@keyframes vt-slide-out-back { to { opacity: 0; transform: translateX(44px); } }
+@keyframes vt-slide-in-back { from { opacity: 0; transform: translateX(-44px); } }
+html[data-vt-back]::view-transition-old(root) { animation-name: vt-slide-out-back; }
+html[data-vt-back]::view-transition-new(root) { animation-name: vt-slide-in-back; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
 .reveal { opacity: 1; transform: none; }
 
 .js .reveal {
@@ -966,8 +1012,6 @@ button.ti-cell:hover { background: var(--paper); }
   transition: opacity .8s var(--ease-lift), transform .8s var(--ease-lift);
 }
 .js .reveal.is-visible { opacity: 1; transform: none; }
-
-.js body, body.js-fade { transition: opacity .35s ease; }
 
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; transition: none; }

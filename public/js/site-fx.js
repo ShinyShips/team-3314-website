@@ -1,7 +1,8 @@
 /* Team 3314 site effects — production version of the prototype's site-fx.js.
-   Behaviors kept: page fade transitions, scroll fade-ins, stat count-ups,
-   mobile hamburger nav (incl. the homepage overlay nav), and the mailto
-   composers behind the Contact and Join forms. Hover lifts are pure CSS.
+   Behaviors kept: scroll fade-ins, stat count-ups, mobile hamburger nav
+   (incl. the homepage overlay nav), and the mailto composers behind the
+   Contact and Join forms. Hover lifts are pure CSS; page transitions are
+   native cross-document view transitions (see global.css).
    The prototype's DOM heuristics are replaced with explicit hooks:
    .reveal, [data-count], .nav__toggle, .nav-panel, #contact-form, #join-form. */
 (function () {
@@ -11,26 +12,6 @@
 
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('js');
-
-  /* ---------- page transitions ---------- */
-  if (!reduced) {
-    document.body.classList.add('js-fade');
-    document.body.style.opacity = '0';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { document.body.style.opacity = '1'; });
-    });
-    window.addEventListener('pageshow', function () { document.body.style.opacity = '1'; });
-    document.addEventListener('click', function (e) {
-      var a = e.target && e.target.closest ? e.target.closest('a') : null;
-      if (!a) return;
-      var href = a.getAttribute('href') || '';
-      // Fade only for same-site page navigations (root-relative routes).
-      if (href.charAt(0) !== '/' || href.indexOf('//') === 0 || a.target) return;
-      e.preventDefault();
-      document.body.style.opacity = '0';
-      setTimeout(function () { location.href = href; }, 300);
-    });
-  }
 
   /* ---------- scroll fade-ins ---------- */
   var reveals = document.querySelectorAll('.reveal');

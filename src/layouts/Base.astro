@@ -30,6 +30,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<script is:inline>
+// Mirror the page-slide view transition when the user navigates back.
+// Must run before first render, hence inline in <head>. Browsers without
+// pagereveal/Navigation API skip it and keep the forward slide.
+addEventListener('pagereveal', function (e) {
+  if (!e.viewTransition || !self.navigation || !navigation.activation) return;
+  var a = navigation.activation;
+  if (a.navigationType === 'traverse' && a.from && a.entry.index < a.from.index) {
+    document.documentElement.setAttribute('data-vt-back', '');
+    e.viewTransition.finished.finally(function () {
+      document.documentElement.removeAttribute('data-vt-back');
+    });
+  }
+});
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
