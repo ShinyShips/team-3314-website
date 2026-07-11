@@ -1,0 +1,8 @@
+# The Google API key in team-info.js is a public browser key by design —
+# it can only read the already-public team calendar and Drive folder, and is
+# restricted in the Google console to frc3314.com referrers and those two
+# APIs. See docs/adr/0001-client-side-google-api-for-team-info.md.
+# These settings stop Netlify's secrets scanner from failing the build on it.
+[build.environment]
+SECRETS_SCAN_OMIT_PATHS = "public/js/team-info.js,dist/js/team-info.js"
+SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "AIzaSyCcE8R1yTaVXxZUoTLAczU2910CbeSnWbM"
