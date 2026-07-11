@@ -218,7 +218,12 @@ input:focus, textarea:focus, select:focus {
   background: linear-gradient(180deg, rgba(20,8,8,.3) 0%, rgba(20,8,8,.7) 100%);
 }
 .hero--join .hero__scrim { background: linear-gradient(180deg, rgba(20,8,8,.35) 0%, rgba(20,8,8,.7) 100%); }
-.hero--home .hero__scrim { background: linear-gradient(180deg, rgba(20,8,8,.55) 0%, rgba(20,8,8,.15) 40%, rgba(20,8,8,.6) 100%); }
+.hero--home .hero__scrim { background: linear-gradient(180deg, rgba(20,8,8,.55) 0%, rgba(20,8,8,.25) 40%, rgba(20,8,8,.72) 100%); }
+/* On narrow screens the title block rides higher into the frame — keep the
+   video legibly dark behind it. */
+@media (max-width: 700px) {
+  .hero--home .hero__scrim { background: linear-gradient(180deg, rgba(20,8,8,.6) 0%, rgba(20,8,8,.4) 40%, rgba(20,8,8,.82) 100%); }
+}
 
 .hero__content {
   position: absolute;
