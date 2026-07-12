@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="Page not found — FRC Team 3314" description="That page doesn't exist or has moved. Head back to the Mechanical Mustangs homepage.">
+
+<Nav />
+
+<main id="main">
+
+  <section class="hero">
+    <img class="hero__img" src="/assets/Kickoff.jpg" alt="Team 3314 gathered in the shop beneath their FIRST Robotics Competition winner banners">
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="eyebrow eyebrow--light">ERROR 404</p>
+      <h1 class="hero__title">This page took<br>a wrong turn</h1>
+      <p class="hero__lede">The page you're looking for doesn't exist or has moved. Let's get you back on track.</p>
+      <div class="hero__actions">
+        <a class="btn btn--white" href="/">BACK TO HOME</a>
+        <a class="btn btn--ghost" href="/contact/">CONTACT US &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</Base>
