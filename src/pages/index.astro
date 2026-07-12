@@ -1,103 +1,184 @@
 ---
-import Base from '../layouts/Base.astro';
-import Nav from '../components/Nav.astro';
-import Marquee from '../components/Marquee.astro';
-import sponsors from '../data/sponsors.json';
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Marquee from "../components/Marquee.astro";
+import sponsors from "../data/sponsors.json";
 ---
-<Base title="FRC Team 3314 — The Mechanical Mustangs | Clifton, NJ" description="FRC Team 3314, the Mechanical Mustangs of Clifton High School — a student-built engine for STEM opportunity in Clifton, New Jersey.">
 
-<main id="main">
+<Base
+    title="FRC Team 3314 — The Mechanical Mustangs | Clifton, NJ"
+    description="FRC Team 3314, the Mechanical Mustangs of Clifton High School — a student-built engine for STEM opportunity in Clifton, New Jersey."
+>
+    <main id="main">
+        <!-- HERO — full-viewport video -->
+        <section class="hero hero--home">
+            <img
+                class="hero__img"
+                src="/assets/matchFallback.jpg"
+                alt="Team 3314's robot competing on the field during a match"
+            />
+            <video
+                class="hero__video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                poster="/assets/matchFallback.jpg"
+                src="/assets/hero.mp4"
+                aria-label="Team 3314 highlight reel"></video>
+            <div class="hero__scrim" aria-hidden="true"></div>
+            <Nav active="home" overlay />
+            <div class="hero__content">
+                <p class="eyebrow eyebrow--light">
+                    CLIFTON, NEW JERSEY &mdash; EST. 2010
+                </p>
+                <h1 class="hero__title">The Mechanical<br />Mustangs</h1>
+                <p class="hero__lede">
+                    A student-built engine for STEM opportunity &mdash; in a
+                    city where the odds say otherwise.
+                </p>
+                <div class="hero__actions">
+                    <a class="btn btn--white" href="/sponsors/"
+                        >SPONSOR THE TEAM</a
+                    >
+                    <a class="btn btn--ghost" href="/join/">JOIN US &rarr;</a>
+                </div>
+            </div>
+        </section>
 
-  <!-- HERO — full-viewport video -->
-  <section class="hero hero--home">
-    <img class="hero__img" src="/assets/matchFallback.jpg" alt="Team 3314's robot competing on the field during a match">
-    <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="/assets/matchFallback.jpg" src="/assets/hero.mp4" aria-label="Team 3314 highlight reel"></video>
-    <div class="hero__scrim" aria-hidden="true"></div>
-    <Nav active="home" overlay />
-    <div class="hero__content">
-      <p class="eyebrow eyebrow--light">CLIFTON, NEW JERSEY &mdash; EST. 2010</p>
-      <h1 class="hero__title">The Mechanical<br>Mustangs</h1>
-      <p class="hero__lede">A student-built engine for STEM opportunity &mdash; in a city where the odds say otherwise.</p>
-      <div class="hero__actions">
-        <a class="btn btn--white" href="/sponsors/">SPONSOR THE TEAM</a>
-        <a class="btn btn--ghost" href="/join/">JOIN US &rarr;</a>
-      </div>
-    </div>
-  </section>
+        <!-- STAT BAND -->
+        <section class="stat-band reveal">
+            <div class="stat-band__cell">
+                <span class="stat-band__num" data-count>100%</span>
+                <span class="stat-band__label"
+                    >OF ALUMNI PURSUE<br />POST-SECONDARY EDUCATION</span
+                >
+            </div>
+            <div class="stat-band__cell">
+                <span class="stat-band__num" data-count>92%</span>
+                <span class="stat-band__label"
+                    >GO ON TO WORK IN<br />STEM FIELDS</span
+                >
+            </div>
+            <div class="stat-band__cell">
+                <span class="stat-band__num" data-count>$1.5M+</span>
+                <span class="stat-band__label">EARNED IN<br />SCHOLARSHIPS</span
+                >
+            </div>
+            <div class="stat-band__cell">
+                <span class="stat-band__num" data-count>48%</span>
+                <span class="stat-band__label"
+                    >HIGHER STARTING SALARIES<br />THAN NJ PEERS</span
+                >
+            </div>
+        </section>
 
-  <!-- STAT BAND -->
-  <section class="stat-band reveal">
-    <div class="stat-band__cell">
-      <span class="stat-band__num" data-count>100%</span>
-      <span class="stat-band__label">OF ALUMNI PURSUE<br>POST-SECONDARY EDUCATION</span>
-    </div>
-    <div class="stat-band__cell">
-      <span class="stat-band__num" data-count>92%</span>
-      <span class="stat-band__label">GO ON TO WORK IN<br>STEM FIELDS</span>
-    </div>
-    <div class="stat-band__cell">
-      <span class="stat-band__num" data-count>$1.5M+</span>
-      <span class="stat-band__label">EARNED IN<br>SCHOLARSHIPS</span>
-    </div>
-    <div class="stat-band__cell">
-      <span class="stat-band__num" data-count>83%</span>
-      <span class="stat-band__label">HIGHER STARTING SALARIES<br>THAN NJ PEERS</span>
-    </div>
-  </section>
+        <!-- WHO WE ARE -->
+        <section class="split reveal">
+            <div class="split__copy">
+                <p class="eyebrow eyebrow--wide">01 &mdash; WHO WE ARE</p>
+                <h2
+                    class="split__title"
+                    style="font-size:clamp(30px,5.5vw,44px)"
+                >
+                    Built in Clifton.<br />Built to last.
+                </h2>
+                <p class="split__text" style="max-width:420px">
+                    For 15 years, 25 students and 10 mentors have turned a
+                    warehouse shop into a leadership incubator. No dues. Nightly
+                    meals during build season. No student turned away.
+                </p>
+                <a class="mono-link mono-link--lg" href="/about/"
+                    >MEET THE TEAM &rarr;</a
+                >
+            </div>
+            <img
+                class="split__img"
+                src="/assets/StudentsInTheShop.jpg"
+                alt="Students working in the Team 3314 shop"
+                style="height:min(560px,75vw)"
+            />
+        </section>
 
-  <!-- WHO WE ARE -->
-  <section class="split reveal">
-    <div class="split__copy">
-      <p class="eyebrow eyebrow--wide">01 &mdash; WHO WE ARE</p>
-      <h2 class="split__title" style="font-size:clamp(30px,5.5vw,44px)">Built in Clifton.<br>Built to last.</h2>
-      <p class="split__text" style="max-width:420px">For 15 years, 25 students and 10 mentors have turned a warehouse shop into a leadership incubator. No dues. Nightly meals during build season. No student turned away.</p>
-      <a class="mono-link mono-link--lg" href="/about/">MEET THE TEAM &rarr;</a>
-    </div>
-    <img class="split__img" src="/assets/StudentsInTheShop.jpg" alt="Students working in the Team 3314 shop" style="height:min(560px,75vw)">
-  </section>
+        <!-- THREE PILLARS -->
+        <section class="section section--white section--pillars reveal">
+            <div class="section-head">
+                <h2 class="section-title">More than a robot</h2>
+                <span class="kicker">02 &mdash; WHAT WE DO</span>
+            </div>
+            <div class="card-grid card-grid--loose">
+                <a class="pillar" href="/outreach/">
+                    <img
+                        class="pillar__img"
+                        src="/assets/StemNight.jpg"
+                        alt="Kids playing with the robot at a STEM Family Night"
+                    />
+                    <h3 class="pillar__title">Community outreach</h3>
+                    <p class="pillar__text">
+                        STEM Family Nights, Girls Who Code, Unified Club
+                        robotics &mdash; hands-on STEM for hundreds of Clifton
+                        kids every year.
+                    </p>
+                    <span class="pillar__link">OUTREACH &rarr;</span>
+                </a>
+                <a class="pillar" href="/teams/">
+                    <img
+                        class="pillar__img"
+                        src="/assets/FLLMentoring.jpg"
+                        alt="Mentoring an FLL team at the competition table"
+                    />
+                    <h3 class="pillar__title">Mentoring teams</h3>
+                    <p class="pillar__text">
+                        Three FLL teams fully funded. Three FRC teams supported
+                        through rookie seasons. Kickoff events, team packets,
+                        shop access.
+                    </p>
+                    <span class="pillar__link">TEAMS WE SUPPORT &rarr;</span>
+                </a>
+                <a
+                    class="pillar"
+                    href="https://www.frc-maneuver.com/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <div class="pillar__frame">
+                        <img
+                            src="/assets/maneuver-wordmark.png"
+                            alt="Maneuver — our open-source scouting app"
+                        />
+                    </div>
+                    <h3 class="pillar__title">Maneuver</h3>
+                    <p class="pillar__text">
+                        Our open-source scouting app &mdash; 6,000+ users in 10+
+                        countries, free analytics for any team on any device.
+                    </p>
+                    <span class="pillar__link">THE APP &rarr;</span>
+                </a>
+            </div>
+        </section>
 
-  <!-- THREE PILLARS -->
-  <section class="section section--white section--pillars reveal">
-    <div class="section-head">
-      <h2 class="section-title">More than a robot</h2>
-      <span class="kicker">02 &mdash; WHAT WE DO</span>
-    </div>
-    <div class="card-grid card-grid--loose">
-      <a class="pillar" href="/outreach/">
-        <img class="pillar__img" src="/assets/StemNight.jpg" alt="Kids playing with the robot at a STEM Family Night">
-        <h3 class="pillar__title">Community outreach</h3>
-        <p class="pillar__text">STEM Family Nights, Girls Who Code, Unified Club robotics &mdash; hands-on STEM for hundreds of Clifton kids every year.</p>
-        <span class="pillar__link">OUTREACH &rarr;</span>
-      </a>
-      <a class="pillar" href="/teams/">
-        <img class="pillar__img" src="/assets/FLLMentoring.jpg" alt="Mentoring an FLL team at the competition table">
-        <h3 class="pillar__title">Mentoring teams</h3>
-        <p class="pillar__text">Three FLL teams fully funded. Three FRC teams supported through rookie seasons. Kickoff events, team packets, shop access.</p>
-        <span class="pillar__link">TEAMS WE SUPPORT &rarr;</span>
-      </a>
-      <a class="pillar" href="https://www.frc-maneuver.com/" target="_blank" rel="noopener">
-        <div class="pillar__frame"><img src="/assets/maneuver-wordmark.png" alt="Maneuver — our open-source scouting app"></div>
-        <h3 class="pillar__title">Maneuver</h3>
-        <p class="pillar__text">Our open-source scouting app &mdash; 6,000+ users in 10+ countries, free analytics for any team on any device.</p>
-        <span class="pillar__link">THE APP &rarr;</span>
-      </a>
-    </div>
-  </section>
+        <!-- CTA BAND -->
+        <section class="band band--cta reveal">
+            <p class="eyebrow eyebrow--band">03 &mdash; GET INVOLVED</p>
+            <h2 class="band__title band__title--xl" style="max-width:760px">
+                Help us build the next generation
+            </h2>
+            <p class="band__text" style="max-width:540px">
+                Every dollar, mentor hour, and material donation goes directly
+                to keeping STEM free for every student in Clifton.
+            </p>
+            <div class="band__actions">
+                <a class="btn btn--white" href="/sponsors/">BECOME A SPONSOR</a>
+                <a class="btn btn--ghost" href="/join/">JOIN THE TEAM</a>
+            </div>
+        </section>
 
-  <!-- CTA BAND -->
-  <section class="band band--cta reveal">
-    <p class="eyebrow eyebrow--band">03 &mdash; GET INVOLVED</p>
-    <h2 class="band__title band__title--xl" style="max-width:760px">Help us build the next generation</h2>
-    <p class="band__text" style="max-width:540px">Every dollar, mentor hour, and material donation goes directly to keeping STEM free for every student in Clifton.</p>
-    <div class="band__actions">
-      <a class="btn btn--white" href="/sponsors/">BECOME A SPONSOR</a>
-      <a class="btn btn--ghost" href="/join/">JOIN THE TEAM</a>
-    </div>
-  </section>
-
-  <!-- SPONSOR STRIP -->
-  <Marquee wrapClass="marquee--strip" label="Our sponsors" logos={sponsors} />
-
-</main>
-
+        <!-- SPONSOR STRIP -->
+        <Marquee
+            wrapClass="marquee--strip"
+            label="Our sponsors"
+            logos={sponsors}
+        />
+    </main>
 </Base>
