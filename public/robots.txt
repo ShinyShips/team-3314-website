@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://frc3314.com/sitemap-index.xml
