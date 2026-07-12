@@ -20,6 +20,10 @@
 
 * { box-sizing: border-box; }
 
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -62,6 +66,7 @@ input:focus, textarea:focus, select:focus {
 .eyebrow--muted { font-weight: 500; color: var(--muted); letter-spacing: .14em; }
 .eyebrow--band { font-weight: 500; color: rgba(255,255,255,.6); letter-spacing: .16em; }
 .eyebrow--dark { font-weight: 500; color: rgba(255,255,255,.55); letter-spacing: .16em; }
+.eyebrow__champ { color: #fff; font-weight: 700; }
 
 .kicker { font: 500 12px var(--font-mono); color: var(--muted); letter-spacing: .12em; }
 
@@ -267,6 +272,34 @@ input:focus, textarea:focus, select:focus {
 }
 .hero--home .hero__lede { margin-top: 6px; font-size: 19px; line-height: 1.5; color: rgba(255,255,255,.88); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
+
+/* Scroll cue on the full-viewport homepage hero — vertical "SCROLL" plus a
+   nudging arrow, anchored opposite the title block. Hidden on narrow screens
+   where the CTA stack needs the room. */
+.hero__scroll {
+  position: absolute;
+  right: var(--pad-x);
+  bottom: 56px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px;
+  font: 600 11px var(--font-mono);
+  color: rgba(255,255,255,.7);
+  letter-spacing: .22em;
+}
+.hero__scroll:hover { color: #fff; }
+.hero__scroll-label { writing-mode: vertical-rl; }
+.hero__scroll-arrow { font-size: 14px; animation: fx-scroll-nudge 1.8s ease-in-out infinite; }
+@keyframes fx-scroll-nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+/* Narrow screens: the CTA stack owns the bottom-right, so the cue collapses
+   to a centered arrow in the strip below the content block. */
+@media (max-width: 700px) {
+  .hero__scroll { right: auto; left: 50%; transform: translateX(-50%); bottom: 14px; gap: 0; }
+  .hero__scroll-label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .hero__scroll-arrow { animation: none; } }
 
 /* Scroll parallax on the photo heroes (Join, Robots, About). The image is
    30% taller than its container and drifts down as the hero scrolls out, so
@@ -574,6 +607,41 @@ input:focus, textarea:focus, select:focus {
 .panel__title { margin: 0; font: 700 21px/1.25 var(--font-display); color: var(--ink); }
 .panel__text { margin: 0; font: 400 14.5px/1.6 var(--font-display); color: var(--body); text-wrap: pretty; }
 
+/* sponsorship tiers (Sponsors) — benefits stack downward; Diamond is the
+   one maroon card so the top ask reads as the headline. */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 205px), 1fr));
+  gap: 16px;
+}
+.tier {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 26px 22px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.tier--top { background: var(--maroon); border-color: var(--maroon); }
+.tier__name { font: 600 11.5px var(--font-mono); color: var(--maroon); letter-spacing: .14em; }
+.tier--top .tier__name { color: rgba(255,255,255,.75); }
+.tier__amt { font: 900 26px/1 var(--font-display); color: var(--ink); letter-spacing: -.01em; }
+.tier--top .tier__amt { color: #fff; }
+.tier__list { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.tier__list li {
+  font: 400 13.5px/1.5 var(--font-display);
+  color: var(--body);
+  padding-left: 17px;
+  position: relative;
+  text-wrap: pretty;
+}
+.tier__list li::before {
+  content: '\2192';
+  position: absolute; left: 0;
+  font: 700 11px var(--font-mono);
+  color: var(--maroon);
+}
+.tier--top .tier__list li { color: rgba(255,255,255,.88); }
+.tier--top .tier__list li::before { color: rgba(255,255,255,.55); }
+
 /* bordered feature (Join "what you get") */
 .feature { display: flex; flex-direction: column; gap: 12px; border-top: 2px solid var(--maroon); padding-top: 22px; }
 .feature__title { margin: 0; font: 700 20px/1.2 var(--font-display); color: var(--ink); }
@@ -738,6 +806,37 @@ input:focus, textarea:focus, select:focus {
 .timeline__title { margin: 0; font: 700 20px/1.2 var(--font-display); color: var(--ink); }
 .timeline__text { margin: 0; font: 400 14.5px/1.6 var(--font-display); color: var(--body); text-wrap: pretty; }
 
+/* ---------- season archive rows (Robots, 2010–2022) ---------- */
+
+.archive { margin-top: clamp(44px, 6vw, 64px); }
+.archive__label {
+  display: block;
+  font: 600 11px var(--font-mono);
+  color: var(--muted);
+  letter-spacing: .14em;
+  margin-bottom: 14px;
+}
+.archive__row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 4px 20px;
+  padding: 15px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.archive__row:first-of-type { border-top: 1px solid var(--line); }
+.archive__year { font: 700 13px var(--font-mono); color: var(--maroon); letter-spacing: .06em; }
+.archive__game {
+  font: 700 15.5px var(--font-display);
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  min-width: min(100%, 230px);
+}
+.archive__note { font: 400 14px/1.5 var(--font-display); color: var(--body); flex: 1 1 auto; min-width: min(100%, 320px); text-wrap: pretty; }
+.archive__arrow { font: 600 13px var(--font-mono); color: var(--muted); }
+.archive__row:hover { background: #fff; }
+.archive__row:hover .archive__game,
+.archive__row:hover .archive__arrow { color: var(--maroon); }
+
 /* ---------- press strip ---------- */
 
 .press {
@@ -749,6 +848,7 @@ input:focus, textarea:focus, select:focus {
 }
 .press__names { display: flex; flex-wrap: wrap; gap: clamp(20px, 3.5vw, 44px); }
 .press__name { font: 700 16px var(--font-display); color: var(--body); }
+a.press__name:hover { color: var(--maroon); text-decoration: underline; text-underline-offset: 4px; }
 
 /* ---------- next-page CTA ---------- */
 

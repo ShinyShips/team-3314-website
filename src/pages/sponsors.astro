@@ -40,7 +40,7 @@ import sponsors from '../data/sponsors.json';
         <span class="stat-grid__label">REACHED ANNUALLY THROUGH EVENTS &amp; DEMOS</span>
       </div>
     </div>
-    <p style="margin:20px 0 0;font:400 14px/1.6 var(--font-display);color:var(--muted);max-width:640px">Funding covers registration, materials, machining stock, nightly build-season meals, travel, and outreach events &mdash; nothing goes to salaries or overhead.</p>
+    <p style="margin:20px 0 0;font:400 14px/1.6 var(--font-display);color:var(--muted);max-width:640px">Funding covers registration, materials, machining stock, nightly build-season meals, travel, and outreach events &mdash; nothing goes to salaries or overhead. A full season costs roughly $132,000 to run, and 90% of our students qualify for free or reduced-price lunch: sponsorship is what keeps the team free for every one of them.</p>
   </section>
 
   <!-- PARTNERS -->
@@ -69,12 +69,64 @@ import sponsors from '../data/sponsors.json';
     <Marquee wrapClass="marquee--framed" label="Our sponsors" logos={sponsors} />
   </section>
 
+  <!-- SPONSORSHIP TIERS -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2 class="section-title">03 &mdash; Sponsorship tiers</h2>
+      <a class="mono-link" href="/assets/3314-sponsorship-packet-2025-26.pdf" target="_blank" rel="noopener">DOWNLOAD THE FULL PACKET (PDF) &darr;</a>
+    </div>
+    <div class="tier-grid">
+      <div class="tier tier--top">
+        <span class="tier__name">DIAMOND</span>
+        <span class="tier__amt">$5,000+</span>
+        <ul class="tier__list" role="list">
+          <li>Name &amp; logo on all team displays</li>
+          <li>Called out during team introductions</li>
+          <li>Everything in Platinum</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="tier__name">PLATINUM</span>
+        <span class="tier__amt">$1,000&ndash;$4,999</span>
+        <ul class="tier__list" role="list">
+          <li>Name &amp; logo displayed on the robot</li>
+          <li>Everything in Gold</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="tier__name">GOLD</span>
+        <span class="tier__amt">$500&ndash;$999</span>
+        <ul class="tier__list" role="list">
+          <li>Name &amp; logo on the team uniform</li>
+          <li>Official team T-shirt</li>
+          <li>Everything in Silver</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="tier__name">SILVER</span>
+        <span class="tier__amt">$100&ndash;$499</span>
+        <ul class="tier__list" role="list">
+          <li>Acknowledgement plaque suitable for display</li>
+          <li>Everything in Bronze</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="tier__name">BRONZE</span>
+        <span class="tier__amt">Under $100</span>
+        <ul class="tier__list" role="list">
+          <li>A personalized thank-you card signed by the team</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin:20px 0 0;font:400 14px/1.6 var(--font-display);color:var(--muted);max-width:640px">In-kind donations &mdash; parts, tools, software, print services, advertising space, meals &mdash; are just as welcome and are recognized at the equivalent tier. Reach us at <a href="mailto:donate@frc3314.com">donate@frc3314.com</a>.</p>
+  </section>
+
   <!-- PRESS -->
   <section class="press">
     <span class="eyebrow eyebrow--muted">AS FEATURED IN</span>
     <div class="press__names">
       <span class="press__name">Clifton Merchant</span>
-      <span class="press__name">Clifton Times</span>
+      <a class="press__name" href="https://www.thecliftontimes.com/articles/featured-stories/the-wins-keep-coming-for-chs-robotics-team-the-mechanical-mustangs/" target="_blank" rel="noopener">Clifton Times</a>
       <span class="press__name">Picatinny Family Day</span>
       <span class="press__name">NJ Manufacturing Day</span>
     </div>
@@ -82,13 +134,14 @@ import sponsors from '../data/sponsors.json';
 
   <!-- SPONSOR CTA -->
   <section class="band band--cta reveal">
-    <p class="eyebrow eyebrow--band">03 &mdash; BECOME A SPONSOR</p>
+    <p class="eyebrow eyebrow--band">04 &mdash; BECOME A SPONSOR</p>
     <h2 class="band__title band__title--xl">Invest in a proven pipeline</h2>
     <p class="band__text">92% of our alumni enter STEM fields. Your support turns Clifton students into the engineers your industry needs.</p>
     <div class="band__actions">
       <a class="btn btn--white" href="mailto:admin@frc3314.com">EMAIL admin@frc3314.com</a>
+      <a class="btn btn--ghost" href="/assets/3314-sponsorship-packet-2025-26.pdf" target="_blank" rel="noopener">SPONSORSHIP PACKET (PDF)</a>
     </div>
-    <p style="margin:0;font:400 13px/1.6 var(--font-mono);color:rgba(255,255,255,.6);max-width:560px">Gifts are made through our 501(c)(3) fiscal sponsor, the Montclair Society of Engineers, and are tax-deductible.</p>
+    <p style="margin:0;font:400 13px/1.7 var(--font-mono);color:rgba(255,255,255,.6);max-width:620px">Donations are tax-deductible through our 501(c)(3) fiscal sponsor, the Montclair Society of Engineers (EIN 22-6075853). Checks payable to &ldquo;Montclair Society of Engineers&rdquo; &mdash; 82 Gordonhurst Ave, Montclair, NJ 07043, c/o James Hobin. In-kind donations: <a href="mailto:donate@frc3314.com" style="color:#fff">donate@frc3314.com</a>.</p>
   </section>
 
 </main>

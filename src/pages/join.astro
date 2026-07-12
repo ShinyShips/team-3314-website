@@ -65,16 +65,18 @@ import Nav from '../components/Nav.astro';
       <a class="btn btn--white" href="mailto:admin@frc3314.com">admin@frc3314.com</a>
       <a class="btn btn--ghost" href="https://instagram.com/team3314" target="_blank" rel="noopener">@team3314</a>
     </div>
-    <div class="form-card">
+    <form class="form-card" id="join-form" name="join" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="join">
+      <p hidden aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
       <span class="form-kicker">OR SEND A QUICK NOTE</span>
       <div class="form-grid">
         <div class="field">
           <label class="field__label" for="jn-name">YOUR NAME</label>
-          <input class="field__input" id="jn-name" type="text" autocomplete="name">
+          <input class="field__input" id="jn-name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="field">
           <label class="field__label" for="jn-grade">GRADE</label>
-          <select class="field__input" id="jn-grade">
+          <select class="field__input" id="jn-grade" name="grade">
             <option>9th</option>
             <option>10th</option>
             <option>11th</option>
@@ -85,7 +87,7 @@ import Nav from '../components/Nav.astro';
       </div>
       <div class="field">
         <label class="field__label" for="jn-team">MOST INTERESTED IN</label>
-        <select class="field__input" id="jn-team">
+        <select class="field__input" id="jn-team" name="interest">
           <option>Not sure yet</option>
           <option>Mechanical</option>
           <option>Programming</option>
@@ -97,13 +99,13 @@ import Nav from '../components/Nav.astro';
       </div>
       <div class="field">
         <label class="field__label" for="jn-msg">ANYTHING YOU WANT US TO KNOW (OPTIONAL)</label>
-        <textarea class="field__input" id="jn-msg" rows="3"></textarea>
+        <textarea class="field__input" id="jn-msg" name="message" rows="3"></textarea>
       </div>
       <div class="form-actions">
-        <button class="btn" id="join-send" type="button">I WANT TO JOIN &rarr;</button>
+        <button class="btn" id="join-send" type="submit">I WANT TO JOIN &rarr;</button>
         <span class="form-status" id="join-status" role="status" aria-live="polite"></span>
       </div>
-    </div>
+    </form>
   </section>
 
 </main>

@@ -2,7 +2,7 @@
   {
     "year": 2026,
     "name": "DinoBob",
-    "blurb": "Rebuilt twice mid-season — fitting, for a game called REBUILT.",
+    "blurb": "Rebuilt twice mid-season — fitting, for a game called REBUILT — and still reached the World Championship, with the Excellence in Engineering Award en route.",
     "image": "/assets/2026Robot.jpg",
     "alt": "DinoBob on the field at a 2026 REBUILT event",
     "tba": "https://www.thebluealliance.com/team/3314/2026"
@@ -10,7 +10,7 @@
   {
     "year": 2025,
     "name": "C-Horse",
-    "blurb": "REEFSCAPE District Championship win — with a team that was 100% students of color.",
+    "blurb": "REEFSCAPE District Championship win with a team that was 100% students of color — plus a Centennial event win and the Autonomous Award.",
     "image": "/assets/2025Robot.jpg",
     "alt": "The 2025 robot competing in REEFSCAPE",
     "tba": "https://www.thebluealliance.com/team/3314/2025"
@@ -18,10 +18,18 @@
   {
     "year": 2024,
     "name": "Scorpius",
-    "blurb": "3rd place at the CRESCENDO District Championships.",
+    "blurb": "3rd place at the CRESCENDO District Championship — two Autonomous Awards and a trip to the World Championship.",
     "image": "/assets/2024Robot.png",
     "alt": "The 2024 competition robot",
     "tba": "https://www.thebluealliance.com/team/3314/2024",
     "contain": true
+  },
+  {
+    "year": 2023,
+    "name": "District Champions",
+    "blurb": "Our first District Championship — three CHARGED UP event wins and the #2 rank in FIRST Mid-Atlantic.",
+    "image": "/assets/2023Robot.jpg",
+    "alt": "The 2023 robot carrying a cone during a CHARGED UP match",
+    "tba": "https://www.thebluealliance.com/team/3314/2023"
   }
 ]

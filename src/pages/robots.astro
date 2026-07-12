@@ -3,8 +3,9 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import SeasonCard from '../components/SeasonCard.astro';
 import seasons from '../data/seasons.json';
+import history from '../data/season-history.json';
 ---
-<Base title="Robots & Competition — FRC Team 3314, The Mechanical Mustangs" description="Fifteen seasons of student-built FRC machines from Team 3314, the Mechanical Mustangs of Clifton High School — 2025 FIRST Mid-Atlantic District Champions.">
+<Base title="Robots & Competition — FRC Team 3314, The Mechanical Mustangs" description="Fifteen seasons of student-built FRC machines from Team 3314, the Mechanical Mustangs of Clifton High School — two-time FIRST Mid-Atlantic District Champions (2023, 2025).">
 
 <Nav active="robots" />
 
@@ -16,8 +17,8 @@ import seasons from '../data/seasons.json';
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="eyebrow eyebrow--light">ROBOTS &amp; COMPETITION</p>
-      <h1 class="hero__title">2025 District Champions</h1>
-      <p class="hero__lede">Fifteen seasons of student-built machines &mdash; designed, machined, wired, and programmed in our warehouse shop.</p>
+      <h1 class="hero__title">2025 &amp; 2023<br>District Champions</h1>
+      <p class="hero__lede">Two District Championships. Ten World Championship appearances. Fifteen seasons of machines designed, machined, wired, and programmed in our warehouse shop.</p>
     </div>
   </section>
 
@@ -29,6 +30,17 @@ import seasons from '../data/seasons.json';
     </div>
     <div class="card-grid">
       {seasons.map((s) => <SeasonCard {...s} />)}
+    </div>
+    <div class="archive">
+      <span class="archive__label">EARLIER SEASONS &mdash; 2010&ndash;2022</span>
+      {history.map((h) => (
+        <a class="archive__row" href={h.tba} target="_blank" rel="noopener" aria-label={`${h.year} ${h.game} — season stats on The Blue Alliance`}>
+          <span class="archive__year">{h.year}</span>
+          <span class="archive__game">{h.game}</span>
+          <span class="archive__note">{h.note}</span>
+          <span class="archive__arrow" aria-hidden="true">&#8599;</span>
+        </a>
+      ))}
     </div>
   </section>
 

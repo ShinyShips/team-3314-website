@@ -120,46 +120,40 @@
     else mq.addListener(apply);
   }
 
-  /* ---------- mailto form composers ---------- */
-  function val(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+  /* ---------- Netlify form submissions ----------
+     The Contact and Join forms are static-HTML Netlify Forms (data-netlify
+     in the markup). JS submits them via fetch so the visitor gets an inline
+     confirmation without leaving the page; with JS off, the normal POST
+     lands on the /thanks/ page instead. Required-field checks are native
+     HTML validation (required attributes), so nothing to validate here. */
   function setStatus(id, msg) { var el = document.getElementById(id); if (el) el.textContent = msg; }
 
-  var contactBtn = document.getElementById('contact-send');
-  if (contactBtn) {
-    contactBtn.addEventListener('click', function () {
-      var name = val('ct-name').trim();
-      var email = val('ct-email').trim();
-      var topic = val('ct-topic');
-      var msg = val('ct-msg').trim();
-      if (!name || !msg) {
-        setStatus('contact-status', 'Please add your name and a message.');
-        return;
-      }
-      var subject = '[' + topic + '] Message from ' + name + ' — via frc3314.com';
-      var body = msg + '\n\n— ' + name + (email ? ' (' + email + ')' : '');
-      window.location.href = 'mailto:admin@frc3314.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      setStatus('contact-status', 'Opening your email app…');
+  function wireForm(formId, statusId, okMsg) {
+    var form = document.getElementById(formId);
+    if (!form || !window.fetch) return; // no fetch → normal POST to /thanks/
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      setStatus(statusId, 'Sending…');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        form.reset();
+        setStatus(statusId, okMsg);
+      }).catch(function () {
+        setStatus(statusId, "That didn't send — please email admin@frc3314.com instead.");
+      }).then(function () {
+        if (btn) btn.disabled = false;
+      });
     });
   }
 
-  var joinBtn = document.getElementById('join-send');
-  if (joinBtn) {
-    joinBtn.addEventListener('click', function () {
-      var name = val('jn-name').trim();
-      if (!name) {
-        setStatus('join-status', 'Please add your name.');
-        return;
-      }
-      var subject = '[Joining] ' + name + ' wants to join Team 3314';
-      var msg = val('jn-msg').trim();
-      var body = 'Name: ' + name + '\nGrade: ' + val('jn-grade') +
-        '\nMost interested in: ' + val('jn-team') + (msg ? '\n\n' + msg : '');
-      window.location.href = 'mailto:admin@frc3314.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      setStatus('join-status', 'Opening your email app…');
-    });
-  }
+  wireForm('contact-form', 'contact-status', 'Sent — we usually reply within a day or two.');
+  wireForm('join-form', 'join-status', "Sent — we'll get back to you with the next meeting time.");
 
   /* ---------- homepage overlay nav: translucent over the hero, maroon past it ----------
      The nav is fixed (see .nav-holder--overlay). While the hero is in view it

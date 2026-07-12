@@ -17,21 +17,23 @@ import Nav from '../components/Nav.astro';
 
   <!-- FORM + INFO -->
   <section class="contact-grid reveal">
-    <div class="contact-form">
+    <form class="contact-form" id="contact-form" name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
       <p class="eyebrow eyebrow--wide">01 &mdash; SEND A MESSAGE</p>
       <div class="form-grid form-grid--wide">
         <div class="field field--roomy">
           <label class="field__label" for="ct-name">YOUR NAME</label>
-          <input class="field__input field__input--roomy" id="ct-name" type="text" autocomplete="name">
+          <input class="field__input field__input--roomy" id="ct-name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="field field--roomy">
           <label class="field__label" for="ct-email">YOUR EMAIL</label>
-          <input class="field__input field__input--roomy" id="ct-email" type="email" autocomplete="email">
+          <input class="field__input field__input--roomy" id="ct-email" name="email" type="email" autocomplete="email" required>
         </div>
       </div>
       <div class="field field--roomy">
         <label class="field__label" for="ct-topic">I'M REACHING OUT ABOUT</label>
-        <select class="field__input field__input--roomy" id="ct-topic">
+        <select class="field__input field__input--roomy" id="ct-topic" name="topic">
           <option>Sponsorship</option>
           <option>Joining the team</option>
           <option>Mentoring</option>
@@ -42,14 +44,14 @@ import Nav from '../components/Nav.astro';
       </div>
       <div class="field field--roomy">
         <label class="field__label" for="ct-msg">MESSAGE</label>
-        <textarea class="field__input field__input--roomy" id="ct-msg" rows="6"></textarea>
+        <textarea class="field__input field__input--roomy" id="ct-msg" name="message" rows="6" required></textarea>
       </div>
       <div class="form-actions" style="gap:16px">
-        <button class="btn btn--form" id="contact-send" type="button">SEND MESSAGE &rarr;</button>
+        <button class="btn btn--form" id="contact-send" type="submit">SEND MESSAGE &rarr;</button>
         <span class="form-status" id="contact-status" role="status" aria-live="polite"></span>
       </div>
-      <span class="form-note">Opens your email app addressed to admin@frc3314.com &mdash; nothing is stored here.</span>
-    </div>
+      <span class="form-note">Goes straight to the team's inbox &mdash; we usually reply within a day or two.</span>
+    </form>
     <div class="contact-aside">
       <img loading="lazy" class="contact-aside__img" src="/assets/HappyStudents.jpg" alt="Two Mustangs carrying the team flag and driver station at the FIRST Championship">
       <p class="eyebrow eyebrow--wide">02 &mdash; OTHER WAYS</p>
