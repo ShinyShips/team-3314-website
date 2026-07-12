@@ -4,6 +4,20 @@ import Nav from '../components/Nav.astro';
 import Marquee from '../components/Marquee.astro';
 import universities from '../data/universities.json';
 import employers from '../data/employers.json';
+
+// "Proven outcomes" data — rendered server-side, animated by outcomes.js.
+const outcomeRings = [
+  { pct: 100, caption: 'of alumni pursue post-secondary plans &mdash; 95% attend college or university, others enter the military.' },
+  { pct: 92, caption: 'work in STEM or STEM-adjacent fields after graduation.' },
+];
+const salaryBaseline = 52624;
+const salaryBars = [
+  { label: 'Median<br>under-25 NJ', value: 52624, ref: true },
+  { label: '1 year<br>on team', value: 70000 },
+  { label: '2 years<br>on team', value: 75000 },
+  { label: '3 years<br>on team', value: 77500 },
+  { label: '4 years<br>on team', value: 84000 },
+];
 ---
 <Base title="About — FRC Team 3314, The Mechanical Mustangs" description="Team 3314 exists to prove that where you're from doesn't decide what you can build. Meet the Mechanical Mustangs of Clifton, NJ.">
 
@@ -67,33 +81,59 @@ import employers from '../data/employers.json';
     </div>
   </section>
 
-  <!-- OUTCOMES TABLE -->
-  <section class="section reveal">
-    <div class="section-head" style="margin-bottom:8px">
+  <!-- PROVEN OUTCOMES -->
+  <section class="section reveal" data-outcomes>
+    <div class="section-head">
       <h2 class="section-title">03 &mdash; Proven outcomes</h2>
       <span class="kicker">ANNUAL ALUMNI SURVEY</span>
     </div>
-    <div class="outcomes">
-      <div class="outcomes__row">
-        <span class="outcomes__idx">01</span>
-        <span class="outcomes__num" data-count>100%</span>
-        <span class="outcomes__desc">of alumni pursue post-secondary education &mdash; 95% attend college or university.</span>
+
+    <div class="outcome-rings">
+      {outcomeRings.map((r) => (
+        <figure class="ring-card">
+          <div class="ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+              <circle class="ring__arc js-ring" cx="60" cy="60" r="52" data-pct={r.pct}></circle>
+            </svg>
+            <span class="ring__num js-count" data-countup={r.pct} data-suffix="%">{r.pct}%</span>
+          </div>
+          <figcaption set:html={r.caption}></figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="scholarship">
+      <span class="scholarship__num js-count" data-countup="1.5" data-prefix="$" data-suffix="M+" data-decimals="1">$1.5M+</span>
+      <p class="scholarship__sub">earned in scholarships &mdash; breaking down financial barriers to opportunity, one Mustang at a time.</p>
+    </div>
+
+    <div class="salchart">
+      <p class="salchart__title">Median salary &mdash; by years on the team</p>
+      <div class="sallegend">
+        <span class="sallegend__key sallegend__key--adv"></span> ADVANTAGE OVER THE NJ MEDIAN
+        <span class="sallegend__key sallegend__key--base"></span> UP TO THE NJ MEDIAN &mdash; $52,624
       </div>
-      <div class="outcomes__row">
-        <span class="outcomes__idx">02</span>
-        <span class="outcomes__num" data-count>92%</span>
-        <span class="outcomes__desc">work in STEM or STEM-adjacent fields after graduation.</span>
+      <div class="salplot js-salplot" data-baseline={salaryBaseline}>
+        <div class="salbase js-salbase" aria-hidden="true"></div>
+        {salaryBars.map((b) => (
+          <div class="salcol">
+            <span class={b.ref ? 'salcol__val salcol__val--base js-count' : 'salcol__val js-count'} data-countup={b.value} data-prefix="$" data-comma="1">${b.value.toLocaleString('en-US')}</span>
+            {b.ref ? (
+              <div class="salbar salbar--ref js-salbar" data-value={b.value}></div>
+            ) : (
+              <div class="salbar js-salbar" data-value={b.value}>
+                <div class="salbar__adv"></div>
+                <div class="salbar__base"></div>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-      <div class="outcomes__row">
-        <span class="outcomes__idx">03</span>
-        <span class="outcomes__num" data-count>$1.5M+</span>
-        <span class="outcomes__desc">earned in scholarships, breaking down financial barriers to opportunity.</span>
+      <div class="sallabels">
+        {salaryBars.map((b) => (<span set:html={b.label}></span>))}
       </div>
-      <div class="outcomes__row">
-        <span class="outcomes__idx">04</span>
-        <span class="outcomes__num" data-count>83%</span>
-        <span class="outcomes__desc">higher starting salaries than the NJ average for adults under 25 &mdash; 4-year members earn 60% more than their peers.</span>
-      </div>
+      <p class="salchart__note">Four years on the team &rarr; <strong>60% more</strong> than the median salary of adults under 25 in NJ. The average alumni starting salary of <strong>$78,116</strong> runs <strong>48% above</strong> that median.</p>
     </div>
   </section>
 
@@ -103,7 +143,7 @@ import employers from '../data/employers.json';
       <h2 class="section-title">Where Mustangs go next</h2>
       <span class="kicker">04 &mdash; AFTER THE TEAM</span>
     </div>
-    <p style="margin:0 0 44px;font:400 16.5px/1.6 var(--font-display);color:var(--body);max-width:680px;padding:0 var(--pad-x);text-wrap:pretty">100% of our alumni pursue post-secondary education. A sample of where recent Mustangs study and work:</p>
+    <p style="margin:0 0 44px;font:400 16.5px/1.6 var(--font-display);color:var(--body);max-width:680px;padding:0 var(--pad-x);text-wrap:pretty">100% of our alumni pursue post-secondary plans. A sample of where recent Mustangs study and work:</p>
     <span class="marquee-label">UNIVERSITIES</span>
     <Marquee wrapClass="marquee--gap" label="Universities our alumni attend" trackClass="marquee__track--unis" wide logos={universities} />
     <span class="marquee-label">EMPLOYERS</span>
@@ -128,5 +168,7 @@ import employers from '../data/employers.json';
   </section>
 
 </main>
+
+<script src="/js/outcomes.js" defer is:inline></script>
 
 </Base>

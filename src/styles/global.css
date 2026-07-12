@@ -11,6 +11,7 @@
   --paper: #FBF9F6;
   --line: #E7E0D8;
   --hero-base: #2A1010;
+  --scholar-green: #1B6E4A; /* deliberate one-time accent — scholarships figure only */
   --pad-x: clamp(20px, 4vw, 48px);
   --font-display: 'Archivo', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -456,29 +457,53 @@ input:focus, textarea:focus, select:focus {
 .ministats--dark .ministat__num { font-size: 40px; color: #fff; }
 .ministats--dark .ministat__label { color: rgba(255,255,255,.55); letter-spacing: .08em; }
 
-/* outcomes table (About) */
-.outcomes { display: flex; flex-direction: column; }
-.outcomes__row {
-  display: grid;
-  grid-template-columns: minmax(44px, 80px) minmax(140px, 260px) 1fr;
-  align-items: baseline;
-  padding: 30px 0;
-  border-bottom: 1px solid var(--line);
+/* ---------- proven outcomes (About) ---------- */
+/* Animated on scroll by public/js/outcomes.js; degrades to numbers + text
+   without JS (empty rings/flat bars, all figures still shown). */
+
+/* radial rings */
+.outcome-rings { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(28px, 6vw, 80px); }
+.ring-card { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; max-width: 320px; }
+.ring { position: relative; width: min(190px, 54vw); aspect-ratio: 1; }
+.ring svg { width: 100%; height: 100%; }
+.ring__track { fill: none; stroke: rgba(109,15,15,.12); stroke-width: 9; }
+.ring__arc {
+  fill: none; stroke: var(--maroon); stroke-width: 9; stroke-linecap: round;
+  transform: rotate(-90deg); transform-origin: 60px 60px;
+  stroke-dasharray: 327; stroke-dashoffset: 327; /* empty until JS sweeps */
 }
-.outcomes__idx { font: 500 13px var(--font-mono); color: var(--muted); }
-.outcomes__num {
-  font: 900 clamp(36px, 7vw, 60px)/1 var(--font-display);
-  color: var(--maroon);
-  letter-spacing: -.02em;
-}
-.outcomes__desc { font: 400 16px/1.5 var(--font-display); color: var(--body); }
+.ring__num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 900 clamp(30px, 3.6vw, 42px) var(--font-display); color: var(--maroon); }
+.ring-card figcaption { font: 400 15px/1.55 var(--font-display); color: var(--body); text-wrap: pretty; max-width: 260px; }
+
+/* $1.5M+ scholarship headline — the one green accent */
+.scholarship { margin: clamp(48px, 7vw, 88px) auto 0; max-width: 820px; padding: clamp(40px, 5vw, 56px) 0 0; border-top: 1px solid var(--line); text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.scholarship__num { font: 900 clamp(64px, 11vw, 132px)/0.95 var(--font-display); font-stretch: 108%; letter-spacing: -.02em; color: var(--scholar-green); }
+.scholarship__sub { margin: 0; max-width: 520px; font: 400 clamp(16px, 2vw, 19px)/1.55 var(--font-display); color: var(--body); text-wrap: pretty; }
+
+/* salary comparison column chart */
+.salchart { max-width: 920px; margin: clamp(48px, 7vw, 88px) auto 0; }
+.salchart__title { margin: 0 0 14px; text-align: center; font: 600 13px var(--font-mono); color: var(--stat-label); letter-spacing: .12em; text-transform: uppercase; }
+.sallegend { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 20px; margin-bottom: 30px; font: 600 10.5px var(--font-mono); color: var(--stat-label); letter-spacing: .06em; }
+.sallegend__key { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 2px; }
+.sallegend__key--adv { background: var(--maroon); }
+.sallegend__key--base { background: rgba(109,15,15,.16); }
+.salplot { position: relative; display: flex; align-items: flex-end; gap: clamp(10px, 3vw, 32px); height: clamp(240px, 40vw, 360px); }
+.salcol { position: relative; flex: 1; height: 100%; }
+.salcol__val { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font: 800 clamp(14px, 1.8vw, 18px) var(--font-display); color: var(--maroon); font-variant-numeric: tabular-nums; }
+.salcol__val--base { color: var(--stat-label); }
+.salbar { position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto; width: clamp(30px, 6vw, 58px); height: 0; display: flex; flex-direction: column; border-radius: 6px 6px 0 0; overflow: hidden; }
+.salbar__adv { flex: none; height: 0; background: var(--maroon); }
+.salbar__base { flex: 1; background: rgba(109,15,15,.16); }
+.salbar--ref { background: var(--muted); }
+.salbase { position: absolute; left: 0; right: 0; bottom: 0; border-top: 2px dashed var(--muted); pointer-events: none; }
+.sallabels { display: flex; gap: clamp(10px, 3vw, 32px); margin-top: 14px; }
+.sallabels span { flex: 1; text-align: center; font: 500 11.5px/1.4 var(--font-mono); color: var(--body); letter-spacing: .04em; }
+.salchart__note { margin: 36px auto 0; max-width: 620px; text-align: center; font: 400 16px/1.6 var(--font-display); color: var(--body); text-wrap: pretty; }
+.salchart__note strong { color: var(--maroon); }
 
 @media (max-width: 640px) {
-  .outcomes__row {
-    grid-template-columns: 1fr;
-    row-gap: 10px;
-    padding: 24px 0;
-  }
+  .salcol__val { font-size: 12px; }
+  .sallabels span { font-size: 9.5px; }
 }
 
 /* ---------- cards ---------- */
