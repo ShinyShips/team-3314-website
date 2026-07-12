@@ -161,6 +161,20 @@
     });
   }
 
+  /* ---------- homepage overlay nav: translucent over the hero, maroon past it ----------
+     The nav is fixed (see .nav-holder--overlay). While the hero is in view it
+     stays translucent; once the hero scrolls out it turns solid maroon, and it
+     switches back if the hero re-enters the viewport. */
+  var overlayNav = document.querySelector('.nav--overlay');
+  var homeHero = document.querySelector('.hero--home');
+  if (overlayNav && homeHero && 'IntersectionObserver' in window) {
+    // Keep the observer referenced so it isn't garbage-collected.
+    var navSolidIo = new IntersectionObserver(function (entries) {
+      overlayNav.classList.toggle('nav--solid', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+    navSolidIo.observe(homeHero);
+  }
+
   /* ---------- homepage hero video: nudge autoplay past mobile blockers ----------
      iOS Safari refuses autoplay in Low Power Mode / Data Saver and after
      bfcache restores, leaving a play-button glyph over the video. Call

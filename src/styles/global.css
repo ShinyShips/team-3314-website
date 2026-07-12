@@ -88,10 +88,13 @@ input:focus, textarea:focus, select:focus {
 /* ---------- nav ---------- */
 
 .nav-holder { position: sticky; top: 0; z-index: 50; }
+/* Homepage: nav is fixed so it stays put over the hero and beyond (no layout
+   shift over the full-bleed video). It's translucent over the hero and turns
+   maroon once the hero scrolls out of view — see .nav--solid + site-fx.js. */
 .nav-holder--overlay {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 10;
+  z-index: 50;
 }
 
 .nav {
@@ -141,7 +144,11 @@ input:focus, textarea:focus, select:focus {
 .nav--overlay {
   background: none;
   padding: 22px var(--pad-x);
+  transition: background .35s ease;
 }
+/* Toggled by site-fx.js once the hero leaves the viewport (and removed if it
+   scrolls back in) — solid maroon so links stay legible over page content. */
+.nav--overlay.nav--solid { background: var(--maroon); }
 .nav--overlay .nav__logo { height: 46px; }
 .nav--overlay .nav__link { color: rgba(255,255,255,.85); }
 .nav--overlay .nav__link:hover { color: rgba(255,255,255,.85); }
