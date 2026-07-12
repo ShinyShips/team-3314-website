@@ -6,6 +6,11 @@ const { title, description } = Astro.props;
 const ogImage = new URL('/assets/og-image.jpg', Astro.site);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
+// Google Analytics 4 — paste the real Measurement ID here to activate it.
+// Until then it stays dormant (no scripts load).
+const GA_ID = 'G-N0MNYNKGFT';
+const gaEnabled = GA_ID.startsWith('G-') && !GA_ID.includes('XXXX');
+
 // Site-wide structured data — tells search engines what this entity is and
 // where it operates (helps New Jersey / North Jersey regional relevance).
 const orgLd = {
@@ -55,6 +60,12 @@ const orgLd = {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{gaEnabled && (
+  <Fragment>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}></script>
+  </Fragment>
+)}
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href={canonical}>

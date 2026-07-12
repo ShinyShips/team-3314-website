@@ -6,3 +6,15 @@
 [build.environment]
 SECRETS_SCAN_OMIT_PATHS = "public/js/team-info.js,dist/js/team-info.js"
 SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "AIzaSyCcE8R1yTaVXxZUoTLAczU2910CbeSnWbM"
+
+# Baseline security headers applied to every response. CSP is intentionally
+# omitted — this site loads Google Fonts, a YouTube embed, and the Calendar/
+# Drive/Analytics scripts, so a strict policy would need careful allowlisting.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
