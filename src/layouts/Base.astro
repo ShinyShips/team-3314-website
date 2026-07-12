@@ -10,10 +10,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 // where it operates (helps New Jersey / North Jersey regional relevance).
 const orgLd = {
   '@context': 'https://schema.org',
-  '@type': 'SportsTeam',
+  // Multiple types: we compete (SportsTeam) AND educate/mentor
+  // (EducationalOrganization). A schema.org entity can be several things.
+  '@type': ['SportsTeam', 'EducationalOrganization'],
   name: 'FRC Team 3314',
   alternateName: 'The Mechanical Mustangs',
+  description:
+    'Student-run FIRST Robotics Competition team and STEM education program in Clifton, New Jersey — competing while mentoring younger FLL and FRC teams and running free community outreach across North Jersey.',
   sport: 'FIRST Robotics Competition',
+  knowsAbout: ['FIRST Robotics', 'STEM education', 'robotics', 'engineering', 'community outreach'],
   url: Astro.site.href,
   logo: new URL('/assets/logo-white.png', Astro.site).href,
   foundingDate: '2010',
