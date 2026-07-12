@@ -5,11 +5,11 @@ const rowClass = wide ? 'marquee__row marquee__row--wide' : 'marquee__row';
 <div class={('marquee ' + wrapClass).trim()} aria-label={label}>
   <div class={('marquee__track ' + trackClass).trim()}>
     <div class={rowClass}>
-      {logos.map((l) => <img src={l.src} alt={l.alt} style={'height:' + l.height + 'px'} />)}
+      {logos.map((l) => <img loading="lazy" src={l.src} alt={l.alt} style={'height:' + l.height + 'px'} />)}
     </div>
     <div aria-hidden="true" style="display:contents">
       <div class={rowClass}>
-        {logos.map((l) => <img src={l.src} alt="" style={'height:' + l.height + 'px'} />)}
+        {logos.map((l) => <img loading="lazy" src={l.src} alt="" style={'height:' + l.height + 'px'} />)}
       </div>
     </div>
   </div>

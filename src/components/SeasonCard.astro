@@ -2,7 +2,7 @@
 const { year, name, blurb, image, alt, tba, contain = false } = Astro.props;
 ---
 <a class="card" href={tba} target="_blank" rel="noopener" aria-label={`${year} ${name} — season stats on The Blue Alliance`}>
-  <img class={contain ? 'card__img card__img--contain' : 'card__img'} src={image} alt={alt}>
+  <img loading="lazy" class={contain ? 'card__img card__img--contain' : 'card__img'} src={image} alt={alt}>
   <div class="card__body">
     <p class="eyebrow">{year} SEASON</p>
     <h3 class="card__title">{name}</h3>
