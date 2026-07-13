@@ -2,14 +2,17 @@
 const { logos, label, wrapClass = '', trackClass = '', wide = false } = Astro.props;
 const rowClass = wide ? 'marquee__row marquee__row--wide' : 'marquee__row';
 ---
+<!-- Logos load eagerly with explicit width/height: the track animates from
+     first paint, so a lazy image popping in would change the track width
+     mid-translate and make the loop seam jump. -->
 <div class={('marquee ' + wrapClass).trim()} aria-label={label}>
   <div class={('marquee__track ' + trackClass).trim()}>
     <div class={rowClass}>
-      {logos.map((l) => <img loading="lazy" src={l.src} alt={l.alt} style={'height:' + l.height + 'px'} />)}
+      {logos.map((l) => <img src={l.src} alt={l.alt} width={l.width} height={l.height} decoding="async" />)}
     </div>
     <div aria-hidden="true" style="display:contents">
       <div class={rowClass}>
-        {logos.map((l) => <img loading="lazy" src={l.src} alt="" style={'height:' + l.height + 'px'} />)}
+        {logos.map((l) => <img src={l.src} alt="" width={l.width} height={l.height} decoding="async" />)}
       </div>
     </div>
   </div>

@@ -2,71 +2,85 @@
   {
     "src": "/assets/sponsors/coining.png",
     "alt": "Coining MFG",
-    "height": 40
+    "height": 40,
+    "width": 104
   },
   {
     "src": "/assets/sponsors/mse.png",
     "alt": "Montclair Society of Engineers",
-    "height": 34
+    "height": 34,
+    "width": 221
   },
   {
     "src": "/assets/sponsors/unifoods.png",
     "alt": "Unifoods",
-    "height": 44
+    "height": 44,
+    "width": 113
   },
   {
     "src": "/assets/sponsors/rikerdanzig.png",
     "alt": "Riker Danzig LLP",
-    "height": 52
+    "height": 52,
+    "width": 52
   },
   {
     "src": "/assets/sponsors/polymaker.jpg",
     "alt": "Polymaker",
-    "height": 36
+    "height": 36,
+    "width": 120
   },
   {
     "src": "/assets/sponsors/picatinny.jpg",
     "alt": "Picatinny STEM",
-    "height": 56
+    "height": 56,
+    "width": 56
   },
   {
     "src": "/assets/sponsors/mega.jpg",
     "alt": "Mega Industries",
-    "height": 48
+    "height": 48,
+    "width": 48
   },
   {
     "src": "/assets/logos/lockheed.png",
     "alt": "Lockheed Martin",
-    "height": 48
+    "height": 48,
+    "width": 82
   },
   {
     "src": "/assets/logos/l3harris.png",
     "alt": "L3Harris",
-    "height": 36
+    "height": 36,
+    "width": 127
   },
   {
     "src": "/assets/sponsors/hoboken.jpg",
     "alt": "Hoboken Farms",
-    "height": 44
+    "height": 44,
+    "width": 220
   },
   {
     "src": "/assets/sponsors/hobin.png",
     "alt": "Hobin Engineering",
-    "height": 48
+    "height": 48,
+    "width": 80
   },
   {
     "src": "/assets/sponsors/haas.jpg",
     "alt": "Gene Haas Foundation",
-    "height": 56
+    "height": 56,
+    "width": 60
   },
   {
     "src": "/assets/sponsors/generaldynamics.png",
     "alt": "General Dynamics",
-    "height": 28
+    "height": 28,
+    "width": 50
   },
   {
     "src": "/assets/sponsors/csanalytical.png",
     "alt": "CS Analytical",
-    "height": 56
+    "height": 56,
+    "width": 61
   }
 ]

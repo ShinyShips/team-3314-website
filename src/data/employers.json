@@ -2,66 +2,79 @@
   {
     "src": "/assets/logos/l3harris.png",
     "alt": "L3Harris",
-    "height": 34
+    "height": 34,
+    "width": 120
   },
   {
     "src": "/assets/logos/lockheed.png",
     "alt": "Lockheed Martin",
-    "height": 30
+    "height": 30,
+    "width": 52
   },
   {
     "src": "/assets/logos/boeing.png",
     "alt": "Boeing",
-    "height": 30
+    "height": 30,
+    "width": 133
   },
   {
     "src": "/assets/logos/jnj.png",
     "alt": "Johnson &amp; Johnson",
-    "height": 32
+    "height": 32,
+    "width": 127
   },
   {
     "src": "/assets/logos/ge.png",
     "alt": "GE",
-    "height": 44
+    "height": 44,
+    "width": 44
   },
   {
     "src": "/assets/logos/pseg.png",
     "alt": "PSEG",
-    "height": 38
+    "height": 38,
+    "width": 149
   },
   {
     "src": "/assets/logos/army.png",
     "alt": "U.S. Army",
-    "height": 44
+    "height": 44,
+    "width": 33
   },
   {
     "src": "/assets/logos/atlassian.png",
     "alt": "Atlassian",
-    "height": 38
+    "height": 38,
+    "width": 39
   },
   {
     "src": "/assets/logos/bofa.png",
     "alt": "Bank of America",
-    "height": 32
+    "height": 32,
+    "width": 56
   },
   {
     "src": "/assets/logos/chewy.png",
     "alt": "Chewy",
-    "height": 34
+    "height": 34,
+    "width": 83
   },
   {
     "src": "/assets/logos/dupont.png",
     "alt": "DuPont",
-    "height": 32
+    "height": 32,
+    "width": 82
   },
   {
     "src": "/assets/logos/stryker.png",
     "alt": "Stryker",
-    "height": 30
+    "height": 30,
+    "width": 74
   },
   {
     "src": "/assets/logos/ups.png",
     "alt": "UPS",
-    "height": 44
+    "height": 44,
+    "width": 42
   }
 ]
