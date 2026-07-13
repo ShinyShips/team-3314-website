@@ -25,6 +25,11 @@
   html { scroll-behavior: smooth; }
 }
 
+/* Overscroll and the strip behind collapsing mobile toolbars show the root
+   background — match the footer so it reads as part of the page, not a
+   white bar. */
+html { background: var(--maroon-dark); }
+
 body {
   margin: 0;
   background: var(--paper);
@@ -542,6 +547,9 @@ input:focus, textarea:focus, select:focus {
 .ministat { display: flex; flex-direction: column; gap: 6px; }
 .ministat__num { font: 900 36px/1 var(--font-display); color: var(--maroon); }
 .ministat__label { font: 500 11px var(--font-mono); color: var(--stat-label); letter-spacing: .06em; }
+/* single headline stat (Outreach STEM nights) */
+.ministat--xl .ministat__num { font-size: clamp(52px, 8vw, 76px); letter-spacing: -.02em; }
+.ministat--xl .ministat__label { font-size: 12px; letter-spacing: .1em; }
 .ministats--dark { gap: clamp(20px, 3.5vw, 44px); }
 .ministats--dark .ministat__num { font-size: 40px; color: #fff; }
 .ministats--dark .ministat__label { color: rgba(255,255,255,.55); letter-spacing: .08em; }
