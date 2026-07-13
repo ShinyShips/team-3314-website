@@ -1,6 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
+import wwmsFll from '../assets/WWMSFLL.jpg';
+import ccmsFll from '../assets/CCMSFLLMentoring.jpg';
+import stGeorge from '../assets/StGeorge.jpg';
+import americanDreamFll from '../assets/AmericanDreamFLL.jpg';
+import aroc2026 from '../assets/AROC2026.jpg';
+import maneuverScout from '../assets/ManeuverScout.png';
 ---
 <Base title="Teams We Run & Mentor — FRC Team 3314" description="From fully funding middle school FLL teams to walking rookie FRC teams through their first build season — the FIRST teams Team 3314 runs and mentors.">
 
@@ -23,7 +30,7 @@ import Nav from '../components/Nav.astro';
     </div>
     <div class="card-grid">
       <article class="card">
-        <img loading="lazy" class="card__img card__img--short" src="/assets/WWMSFLL.jpg" alt="Woodrow Wilson Mechanical Mustangs at the FLL table">
+        <Image class="card__img card__img--short" src={wwmsFll} widths={[400, 640, 960]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" alt="Woodrow Wilson Mechanical Mustangs at the FLL table" />
         <div class="card__body card__body--tall">
           <p class="eyebrow">FLL 3784</p>
           <h3 class="card__title card__title--sm">Woodrow Wilson MS</h3>
@@ -31,7 +38,7 @@ import Nav from '../components/Nav.astro';
         </div>
       </article>
       <article class="card">
-        <img loading="lazy" class="card__img card__img--short" src="/assets/CCMSFLLMentoring.jpg" alt="CCMS Mechanical Mustangs at the FLL competition table">
+        <Image class="card__img card__img--short" src={ccmsFll} widths={[400, 640, 960]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" alt="CCMS Mechanical Mustangs at the FLL competition table" />
         <div class="card__body card__body--tall">
           <p class="eyebrow">FLL 3785</p>
           <h3 class="card__title card__title--sm">Christopher Columbus MS</h3>
@@ -54,7 +61,7 @@ import Nav from '../components/Nav.astro';
 
   <!-- FRC MENTORING -->
   <section class="split split--white reveal">
-    <img loading="lazy" class="split__img split__img--xtall" src="/assets/StGeorge.jpg" alt="Weekend build session mentoring 10997 St. George in our shop">
+    <Image class="split__img split__img--xtall" src={stGeorge} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Weekend build session mentoring 10997 St. George in our shop" />
     <div class="split__copy" style="gap:24px">
       <p class="eyebrow eyebrow--wide">02 &mdash; FRC MENTORING</p>
       <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Rookie season, covered</h2>
@@ -84,8 +91,8 @@ import Nav from '../components/Nav.astro';
       <p class="band__text">Co-hosted with the Montclair Society of Engineers &mdash; 48 teams annually. We also led the American Robotics Open Championship at Liberty Science Center in 2025, returning at Drew University in 2026.</p>
     </div>
     <div class="band__imgpair">
-      <img loading="lazy" src="/assets/AmericanDreamFLL.jpg" alt="Crowd at a co-hosted FLL event">
-      <img loading="lazy" src="/assets/AROC2026.jpg" alt="American Robotics Open Championship 2026 at Drew University">
+      <Image src={americanDreamFll} widths={[480, 800, 1200]} sizes="(max-width: 940px) 100vw, 50vw" alt="Crowd at a co-hosted FLL event" />
+      <Image src={aroc2026} widths={[480, 800, 1200]} sizes="(max-width: 940px) 100vw, 50vw" alt="American Robotics Open Championship 2026 at Drew University" />
     </div>
   </section>
 
@@ -104,7 +111,7 @@ import Nav from '../components/Nav.astro';
         <a class="btn btn--on-dark" href="https://www.frc-maneuver.com/" target="_blank" rel="noopener">VISIT FRC-MANEUVER.COM &rarr;</a>
       </div>
       <div>
-        <img loading="lazy" class="dark-band__shot" src="/assets/ManeuverScout.png" alt="Maneuver scouting interface for the 2026 game">
+        <Image class="dark-band__shot" src={maneuverScout} widths={[480, 800, 1200]} sizes="(max-width: 940px) 100vw, 50vw" alt="Maneuver scouting interface for the 2026 game" />
       </div>
     </div>
   </section>

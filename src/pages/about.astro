@@ -1,9 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Marquee from '../components/Marquee.astro';
 import universities from '../data/universities.json';
 import employers from '../data/employers.json';
+import cliftonHigh from '../assets/CliftonHigh.webp';
+import teamDinner from '../assets/TeamDinner.jpg';
+import kristia from '../assets/Kristia.jpg';
 
 // "Proven outcomes" data — rendered server-side, animated by outcomes.js.
 const outcomeRings = [
@@ -27,7 +31,7 @@ const salaryBars = [
 
   <!-- PAGE HEADER — photo -->
   <section class="page-header page-header--photo">
-    <img class="page-header__img" src="/assets/CliftonHigh.webp" alt="Clifton High School with its mustang mural">
+    <Image class="page-header__img" src={cliftonHigh} widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" fetchpriority="high" alt="Clifton High School with its mustang mural" />
     <div class="page-header__scrim" aria-hidden="true"></div>
     <div class="page-header__content">
       <p class="eyebrow eyebrow--light">ABOUT US</p>
@@ -68,7 +72,7 @@ const salaryBars = [
 
   <!-- CULTURE -->
   <section class="split split--white reveal">
-    <img loading="lazy" class="split__img split__img--tall" src="/assets/TeamDinner.jpg" alt="Team dinner in the shop">
+    <Image class="split__img split__img--tall" src={teamDinner} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Team dinner in the shop" />
     <div class="split__copy">
       <p class="eyebrow eyebrow--wide">02 &mdash; OUR CULTURE</p>
       <h2 class="split__title">A family first</h2>
@@ -192,7 +196,7 @@ const salaryBars = [
         <span class="pipeline__step">MENTOR</span>
       </div>
     </div>
-    <img loading="lazy" class="split__img split__img--short" src="/assets/Kristia.jpg" alt="Kristia Nahas, 2025 FIRST Leadership Award Winner">
+    <Image class="split__img split__img--short" src={kristia} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Kristia Nahas, 2025 FIRST Leadership Award Winner" />
   </section>
 
 </main>

@@ -169,31 +169,49 @@
     navSolidIo.observe(homeHero);
   }
 
-  /* ---------- homepage hero video: nudge autoplay past mobile blockers ----------
-     iOS Safari refuses autoplay in Low Power Mode / Data Saver and after
-     bfcache restores, leaving a play-button glyph over the video. Call
-     play() explicitly, retry on first touch and page restore, and hide
-     the video (revealing the static photo) if playback stays blocked. */
+  /* ---------- homepage hero video: deferred, right-sized, pausable ----------
+     The <video> ships without src — only the poster frame. Here we pick the
+     rendition for the viewport (720p under 700px, 900p otherwise), skip the
+     download entirely under Save-Data or reduced motion, and nudge autoplay
+     past mobile blockers (Low Power Mode, bfcache restores) by calling
+     play() explicitly. The pause toggle satisfies WCAG 2.2.2 for the
+     auto-playing loop; once the user pauses, nothing auto-restarts it. */
   var heroVideo = document.querySelector('.hero__video');
-  if (heroVideo) {
-    if (reduced) {
-      heroVideo.removeAttribute('autoplay');
-      heroVideo.style.display = 'none';
-    } else {
-      heroVideo.muted = true; // some WebKit builds ignore the HTML attr for autoplay policy
-      var tryPlay = function () {
-        var p = heroVideo.play();
-        if (p && p.then) {
-          p.then(function () { heroVideo.style.visibility = ''; })
-           .catch(function () { heroVideo.style.visibility = 'hidden'; });
-        }
-      };
-      tryPlay();
-      window.addEventListener('touchend', tryPlay, { once: true, passive: true });
-      window.addEventListener('pointerdown', tryPlay, { once: true });
-      window.addEventListener('pageshow', function () { if (heroVideo.paused) tryPlay(); });
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden && heroVideo.paused) tryPlay();
+  var heroToggle = document.querySelector('.hero__playtoggle');
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (heroVideo && (reduced || saveData)) {
+    heroVideo.style.display = 'none'; // poster/fallback image stands in
+  } else if (heroVideo) {
+    var userPaused = false;
+    heroVideo.src = matchMedia('(max-width: 700px)').matches
+      ? heroVideo.getAttribute('data-src-mobile')
+      : heroVideo.getAttribute('data-src-desktop');
+    heroVideo.muted = true; // some WebKit builds ignore the HTML attr for autoplay policy
+    var tryPlay = function () {
+      if (userPaused) return;
+      var p = heroVideo.play();
+      if (p && p.then) {
+        p.then(function () {
+          heroVideo.style.visibility = '';
+          if (heroToggle) heroToggle.hidden = false;
+        }).catch(function () { heroVideo.style.visibility = 'hidden'; });
+      }
+    };
+    tryPlay();
+    window.addEventListener('touchend', tryPlay, { once: true, passive: true });
+    window.addEventListener('pointerdown', tryPlay, { once: true });
+    window.addEventListener('pageshow', function () { if (heroVideo.paused) tryPlay(); });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && heroVideo.paused) tryPlay();
+    });
+    if (heroToggle) {
+      heroToggle.addEventListener('click', function () {
+        userPaused = !userPaused;
+        if (userPaused) heroVideo.pause();
+        else heroVideo.play();
+        heroToggle.setAttribute('aria-pressed', String(userPaused));
+        heroToggle.setAttribute('aria-label', userPaused ? 'Play background video' : 'Pause background video');
+        heroToggle.innerHTML = userPaused ? '&#9654;' : '&#10074;&#10074;';
       });
     }
   }

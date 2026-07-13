@@ -1,9 +1,17 @@
 ---
+import { Image, getImage } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import Marquee from "../components/Marquee.astro";
 import PullQuote from "../components/PullQuote.astro";
 import sponsors from "../data/sponsors.json";
+import matchFallback from "../assets/matchFallback.jpg";
+import studentsInTheShop from "../assets/StudentsInTheShop.jpg";
+import stemNight from "../assets/StemNight.jpg";
+import fllMentoring from "../assets/FLLMentoring.jpg";
+
+// One optimized frame doubles as the video poster and the no-JS fallback.
+const heroPoster = await getImage({ src: matchFallback, width: 1600, format: "webp" });
 ---
 
 <Base
@@ -15,20 +23,26 @@ import sponsors from "../data/sponsors.json";
     <main id="main">
         <!-- HERO — full-viewport video -->
         <section class="hero hero--home">
-            <img
+            <Image
                 class="hero__img"
-                src="/assets/matchFallback.jpg"
+                src={matchFallback}
+                widths={[640, 960, 1440, 1920]}
+                sizes="100vw"
+                loading="eager"
+                fetchpriority="high"
                 alt="Team 3314's robot competing on the field during a match"
             />
+            <!-- src is chosen by site-fx.js (720p on small screens / Save-Data,
+                 1080p otherwise); with JS off the poster frame stands in. -->
             <video
                 class="hero__video"
-                autoplay
                 muted
                 loop
                 playsinline
-                preload="auto"
-                poster="/assets/matchFallback.jpg"
-                src="/assets/hero.mp4"
+                preload="metadata"
+                poster={heroPoster.src}
+                data-src-desktop="/assets/hero-desktop.mp4"
+                data-src-mobile="/assets/hero-mobile.mp4"
                 aria-label="Team 3314 highlight reel"></video>
             <div class="hero__scrim" aria-hidden="true"></div>
             <div class="hero__content">
@@ -49,6 +63,12 @@ import sponsors from "../data/sponsors.json";
                     <a class="btn btn--ghost" href="/join/">JOIN US &rarr;</a>
                 </div>
             </div>
+            <button
+                class="hero__playtoggle"
+                type="button"
+                aria-label="Pause background video"
+                aria-pressed="false"
+                hidden>&#10074;&#10074;</button>
             <a
                 class="hero__scroll"
                 href="#impact"
@@ -105,10 +125,11 @@ import sponsors from "../data/sponsors.json";
                     >MEET THE TEAM &rarr;</a
                 >
             </div>
-            <img
-                loading="lazy"
+            <Image
                 class="split__img"
-                src="/assets/StudentsInTheShop.jpg"
+                src={studentsInTheShop}
+                widths={[480, 800, 1200, 1600]}
+                sizes="(max-width: 940px) 100vw, 50vw"
                 alt="Students working in the Team 3314 shop"
                 style="height:min(560px,75vw)"
             />
@@ -122,10 +143,11 @@ import sponsors from "../data/sponsors.json";
             </div>
             <div class="card-grid card-grid--loose">
                 <a class="pillar" href="/outreach/">
-                    <img
-                        loading="lazy"
+                    <Image
                         class="pillar__img"
-                        src="/assets/StemNight.jpg"
+                        src={stemNight}
+                        widths={[400, 640, 960]}
+                        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
                         alt="Kids playing with the robot at a STEM Family Night"
                     />
                     <h3 class="pillar__title">Community outreach</h3>
@@ -137,10 +159,11 @@ import sponsors from "../data/sponsors.json";
                     <span class="pillar__link">OUTREACH &rarr;</span>
                 </a>
                 <a class="pillar" href="/teams/">
-                    <img
-                        loading="lazy"
+                    <Image
                         class="pillar__img"
-                        src="/assets/FLLMentoring.jpg"
+                        src={fllMentoring}
+                        widths={[400, 640, 960]}
+                        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
                         alt="Mentoring an FLL team at the competition table"
                     />
                     <h3 class="pillar__title">Mentoring teams</h3>

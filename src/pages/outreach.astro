@@ -1,6 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
+import springIntoStem from '../assets/SpringIntoStem.jpg';
+import girlsWhoCode from '../assets/girls-who-code.jpg';
+import snowman from '../assets/Snowman.jpg';
 ---
 <Base title="Outreach — FRC Team 3314, The Mechanical Mustangs" description="STEM Family Nights, Girls Who Code, inclusion robotics, and community service — hands-on STEM for hundreds of Clifton kids every year.">
 
@@ -22,18 +26,18 @@ import Nav from '../components/Nav.astro';
       <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">A local tradition, four years running</h2>
       <p class="split__text">Annual themed nights at Clifton elementary Schools 9, 13, and 17 &mdash; from "Outer Space" to "Pirates" to "SPRING into STEM." Our students run every station, deliver presentations, and demo robots live. Every child leaves with a take-home STEM bag we fund and build ourselves.</p>
       <div class="ministats">
+        <div class="ministat"><span class="ministat__num" data-count>3,500+</span><span class="ministat__label">ELEMENTARY KIDS REACHED YEARLY</span></div>
         <div class="ministat"><span class="ministat__num" data-count>~65</span><span class="ministat__label">KIDS PER EVENT</span></div>
-        <div class="ministat"><span class="ministat__num" data-count>$10</span><span class="ministat__label">STEM BAG PER CHILD</span></div>
         <div class="ministat"><span class="ministat__num" data-count>3</span><span class="ministat__label">PARTNER SCHOOLS</span></div>
       </div>
     </div>
-    <img loading="lazy" class="split__img" src="/assets/SpringIntoStem.jpg" alt="Kids playing ring toss with the robot at SPRING into STEM">
+    <Image class="split__img" src={springIntoStem} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Kids playing ring toss with the robot at SPRING into STEM" />
   </section>
 
   <!-- GIRLS WHO CODE -->
   <section class="split split--white reveal">
     <div class="split__badge-wrap">
-      <img loading="lazy" class="split__badge" src="/assets/girls-who-code.jpg" alt="Girls Who Code logo">
+      <Image class="split__badge" src={girlsWhoCode} widths={[240, 480]} sizes="240px" alt="Girls Who Code logo" />
     </div>
     <div class="split__copy" style="background:var(--paper)">
       <p class="eyebrow eyebrow--wide">02 &mdash; GIRLS WHO CODE</p>
@@ -49,7 +53,7 @@ import Nav from '../components/Nav.astro';
       <h2 class="split__title" style="font-size:clamp(28px,5.5vw,40px)">Robots that make everyone smile</h2>
       <p class="split__text">With Clifton High's Unified Club, we host robotics inclusion events for students with disabilities &mdash; like our Snowman Robot, built from a prior-year competition machine with LED lights and a top hat. Our annual Halloween Extravaganza turns the school into a multi-room experience, complete with a candy-delivering Ghost Robot. With the Girl Scouts, our students have helped 25 scouts earn their Robotics Petals.</p>
     </div>
-    <img loading="lazy" class="split__img" src="/assets/Snowman.jpg" alt="The Snowman Robot built for the Unified Club event">
+    <Image class="split__img" src={snowman} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="The Snowman Robot built for the Unified Club event" />
   </section>
 
   <!-- SERVICE -->

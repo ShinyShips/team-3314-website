@@ -1,8 +1,15 @@
 ---
+import { Image } from 'astro:assets';
+
+// Season data (seasons.json) refers to images by /assets/ path; resolve them
+// against src/assets so they go through the optimizing pipeline.
+const images = import.meta.glob('../assets/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
 const { year, name, blurb, image, alt, tba, contain = false } = Astro.props;
+const resolved = images['../assets/' + image.replace('/assets/', '')];
+if (!resolved) throw new Error(`SeasonCard: no image in src/assets for "${image}"`);
 ---
 <a class="card" href={tba} target="_blank" rel="noopener" aria-label={`${year} ${name} — season stats on The Blue Alliance`}>
-  <img loading="lazy" class={contain ? 'card__img card__img--contain' : 'card__img'} src={image} alt={alt}>
+  <Image class={contain ? 'card__img card__img--contain' : 'card__img'} src={resolved} widths={[400, 640, 960]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" alt={alt} />
   <div class="card__body">
     <p class="eyebrow">{year} SEASON</p>
     <h3 class="card__title">{name}</h3>

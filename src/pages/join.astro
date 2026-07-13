@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import PullQuote from '../components/PullQuote.astro';
+import stands from '../assets/stands.jpg';
+import rampRiot from '../assets/RampRiot.jpg';
 ---
 <Base title="Join the Team — FRC Team 3314" description="No experience. No dues. No barriers. FRC Team 3314 is open to every Clifton High School student.">
 
@@ -11,7 +14,7 @@ import PullQuote from '../components/PullQuote.astro';
 
   <!-- HERO -->
   <section class="hero hero--join">
-    <img class="hero__img" src="/assets/stands.jpg" alt="Students in the stands holding up 3314 number signs and teammate face cutouts">
+    <Image class="hero__img" src={stands} widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" fetchpriority="high" alt="Students in the stands holding up 3314 number signs and teammate face cutouts" />
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="eyebrow eyebrow--light">JOIN THE TEAM</p>
@@ -54,7 +57,7 @@ import PullQuote from '../components/PullQuote.astro';
         <li class="tag">STRATEGY &amp; SCOUTING</li>
       </ul>
     </div>
-    <img loading="lazy" class="split__img" src="/assets/RampRiot.jpg" alt="Students cheering at the Ramp Riot competition">
+    <Image class="split__img" src={rampRiot} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Students cheering at the Ramp Riot competition" />
   </section>
 
   <!-- PULL QUOTE -->

@@ -1,9 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import SeasonCard from '../components/SeasonCard.astro';
 import seasons from '../data/seasons.json';
 import history from '../data/season-history.json';
+import dcmp2025 from '../assets/2025DCMP.jpg';
+import studentsAtMill from '../assets/StudentsAtMill.jpg';
 ---
 <Base title="Robots & Competition — FRC Team 3314, The Mechanical Mustangs" description="Fifteen seasons of student-built FRC machines from Team 3314, the Mechanical Mustangs of Clifton High School — two-time FIRST Mid-Atlantic District Champions (2023, 2025).">
 
@@ -13,7 +16,7 @@ import history from '../data/season-history.json';
 
   <!-- HERO — championship -->
   <section class="hero">
-    <img class="hero__img" src="/assets/2025DCMP.jpg" alt="Team 3314 with the 2025 FIRST Mid-Atlantic District Championship winner banner">
+    <Image class="hero__img" src={dcmp2025} widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" fetchpriority="high" alt="Team 3314 with the 2025 FIRST Mid-Atlantic District Championship winner banner" />
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="eyebrow eyebrow--light">ROBOTS &amp; COMPETITION</p>
@@ -58,7 +61,7 @@ import history from '../data/season-history.json';
         <li class="tag">STRATEGY &amp; SCOUTING</li>
       </ul>
     </div>
-    <img loading="lazy" class="split__img" src="/assets/StudentsAtMill.jpg" alt="Students machining a part at the mill">
+    <Image class="split__img" src={studentsAtMill} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Students machining a part at the mill" />
   </section>
 
   <!-- NEXT PAGE CTA -->

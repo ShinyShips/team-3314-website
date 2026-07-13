@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
+import happyStudents from '../assets/HappyStudents.jpg';
 ---
 <Base title="Contact — FRC Team 3314" description="Sponsorship, joining, mentoring, press — talk to FRC Team 3314, the Mechanical Mustangs of Clifton High School.">
 
@@ -53,7 +55,7 @@ import Nav from '../components/Nav.astro';
       <span class="form-note">Goes straight to the team's inbox &mdash; we usually reply within a day or two.</span>
     </form>
     <div class="contact-aside">
-      <img loading="lazy" class="contact-aside__img" src="/assets/HappyStudents.jpg" alt="Two Mustangs carrying the team flag and driver station at the FIRST Championship">
+      <Image class="contact-aside__img" src={happyStudents} widths={[480, 800, 1200]} sizes="(max-width: 940px) 100vw, 50vw" alt="Two Mustangs carrying the team flag and driver station at the FIRST Championship" />
       <p class="eyebrow eyebrow--wide">02 &mdash; OTHER WAYS</p>
       <div class="contact-way">
         <span class="contact-way__label">EMAIL</span>

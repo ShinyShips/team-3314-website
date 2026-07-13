@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
+import kickoff from '../assets/Kickoff.jpg';
 ---
 <Base title="Page not found — FRC Team 3314" description="That page doesn't exist or has moved. Head back to the Mechanical Mustangs homepage.">
 
@@ -9,7 +11,7 @@ import Nav from '../components/Nav.astro';
 <main id="main">
 
   <section class="hero">
-    <img class="hero__img" src="/assets/Kickoff.jpg" alt="Team 3314 gathered in the shop beneath their FIRST Robotics Competition winner banners">
+    <Image class="hero__img" src={kickoff} widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" alt="Team 3314 gathered in the shop beneath their FIRST Robotics Competition winner banners" />
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="eyebrow eyebrow--light">ERROR 404</p>

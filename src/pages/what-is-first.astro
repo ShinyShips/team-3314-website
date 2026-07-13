@@ -1,6 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
+import varsitySport from '../assets/VarsitySport.jpg';
+import fll3 from '../assets/FLL3.jpg';
 ---
 <Base title="What is FRC? — FRC Team 3314" description="FIRST — For Inspiration and Recognition of Science and Technology — combines the excitement of sport with the rigors of science and technology.">
 
@@ -23,7 +26,7 @@ import Nav from '../components/Nav.astro';
       <p class="split__text">Every January, a brand-new game is revealed. Teams of high schoolers get roughly six weeks to design, machine, wire, and program a competition robot &mdash; then face off in alliance-based matches at packed district events, working toward the World Championship.</p>
       <p class="split__text">Students do the work. Mentors from real engineering careers teach alongside them. It's as close to running a small aerospace company as high school gets.</p>
     </div>
-    <img loading="lazy" class="split__img" src="/assets/VarsitySport.jpg" alt="Team 3314 driving in a packed match at the FIRST Championship">
+    <Image class="split__img" src={varsitySport} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Team 3314 driving in a packed match at the FIRST Championship" />
   </section>
 
   <!-- SEASON TIMELINE -->
@@ -78,7 +81,7 @@ import Nav from '../components/Nav.astro';
 
   <!-- THE LADDER -->
   <section class="split reveal">
-    <img loading="lazy" class="split__img split__img--short" src="/assets/FLL3.jpg" alt="Middle schoolers at an FLL Challenge table at our qualifier">
+    <Image class="split__img split__img--short" src={fll3} widths={[480, 800, 1200, 1600]} sizes="(max-width: 940px) 100vw, 50vw" alt="Middle schoolers at an FLL Challenge table at our qualifier" />
     <div class="split__copy">
       <p class="eyebrow eyebrow--wide">03 &mdash; A LADDER, NOT A LEAGUE</p>
       <h2 class="split__title">From LEGO to 120-pound robots</h2>

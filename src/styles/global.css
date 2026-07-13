@@ -162,8 +162,18 @@ input:focus, textarea:focus, select:focus {
   color: #fff;
   background: none;
   border: 1px solid rgba(255,255,255,.6);
+  transition: transform .3s var(--ease-lift), box-shadow .3s var(--ease-lift),
+    background .35s ease, color .35s ease, border-color .35s ease;
 }
 .nav--overlay .nav__cta:hover { color: #fff; }
+/* Once the nav goes solid on scroll, match the filled white CTA used on
+   every other page. */
+.nav--overlay.nav--solid .nav__cta {
+  background: #fff;
+  color: var(--maroon);
+  border-color: #fff;
+}
+.nav--overlay.nav--solid .nav__cta:hover { color: var(--maroon); }
 
 .nav__toggle {
   display: none;
@@ -219,7 +229,13 @@ input:focus, textarea:focus, select:focus {
    container, which breaks the view() parallax timeline below. */
 .hero { position: relative; height: min(560px, 75vw); background: var(--hero-base); overflow: clip; }
 .hero--join { height: min(520px, 80vw); }
-.hero--home { height: 100vh; min-height: 720px; }
+/* 100svh = the viewport with mobile browser chrome visible, so the scroll
+   cue and pause toggle aren't hidden behind the URL bar on first paint.
+   Browsers without svh support fall back to 100vh. */
+.hero--home { height: 100vh; height: 100svh; min-height: 720px; }
+@media (max-width: 700px) {
+  .hero--home { min-height: 600px; }
+}
 
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero__video {
@@ -248,6 +264,10 @@ input:focus, textarea:focus, select:focus {
   display: flex; flex-direction: column; gap: 14px;
 }
 .hero--home .hero__content { bottom: 56px; gap: 18px; }
+/* keep the content clear of the bottom-center scroll cue on small screens */
+@media (max-width: 700px) {
+  .hero--home .hero__content { bottom: 64px; }
+}
 
 .hero__title {
   margin: 0;
@@ -274,30 +294,51 @@ input:focus, textarea:focus, select:focus {
 .hero--home .hero__lede { margin-top: 6px; font-size: 19px; line-height: 1.5; color: rgba(255,255,255,.88); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
 
-/* Scroll cue on the full-viewport homepage hero — vertical "SCROLL" plus a
-   nudging arrow, anchored opposite the title block. Hidden on narrow screens
-   where the CTA stack needs the room. */
-.hero__scroll {
+/* Pause/play toggle for the hero background video (WCAG 2.2.2). Hidden
+   until site-fx.js confirms playback actually started. */
+.hero__playtoggle {
   position: absolute;
   right: var(--pad-x);
-  bottom: 56px;
+  bottom: 14px;
+  z-index: 2;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(20,8,8,.45);
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 50%;
+  color: rgba(255,255,255,.85);
+  font: 600 10px/1 var(--font-mono);
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+}
+.hero__playtoggle:hover { background: rgba(20,8,8,.75); color: #fff; }
+.hero__playtoggle[hidden] { display: none; }
+@media (max-width: 700px) { .hero__playtoggle { right: 16px; } }
+
+/* Scroll cue on the full-viewport homepage hero — bottom-center on every
+   screen (the pause toggle owns the bottom-right corner). Desktop shows the
+   "SCROLL" label above the arrow; narrow screens keep just the arrow. */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 32px;
   display: flex; flex-direction: column; align-items: center;
-  gap: 12px;
+  gap: 8px;
   font: 600 11px var(--font-mono);
   color: rgba(255,255,255,.7);
   letter-spacing: .22em;
 }
 .hero__scroll:hover { color: #fff; }
-.hero__scroll-label { writing-mode: vertical-rl; }
+/* optically recenter — tracking adds trailing space after the last letter */
+.hero__scroll-label { text-indent: .22em; }
 .hero__scroll-arrow { font-size: 14px; animation: fx-scroll-nudge 1.8s ease-in-out infinite; }
 @keyframes fx-scroll-nudge {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
 }
-/* Narrow screens: the CTA stack owns the bottom-right, so the cue collapses
-   to a centered arrow in the strip below the content block. */
 @media (max-width: 700px) {
-  .hero__scroll { right: auto; left: 50%; transform: translateX(-50%); bottom: 14px; gap: 0; }
+  .hero__scroll { bottom: 14px; gap: 0; }
   .hero__scroll-label { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .hero__scroll-arrow { animation: none; } }
@@ -452,6 +493,13 @@ input:focus, textarea:focus, select:focus {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
   border-bottom: 1px solid var(--line);
   background: var(--paper);
+  /* the homepage scroll cue anchors here — land clear of the fixed nav
+     (90px hamburger bar on mobile; up to ~140px on laptops where the
+     link row wraps) */
+  scroll-margin-top: 152px;
+}
+@media (max-width: 940px) {
+  .stat-band { scroll-margin-top: 104px; }
 }
 .stat-band__cell {
   padding: clamp(28px, 4vw, 44px) clamp(22px, 3.5vw, 40px);
@@ -657,6 +705,13 @@ input:focus, textarea:focus, select:focus {
   display: flex; flex-direction: column; align-items: center;
   gap: 24px;
   text-align: center;
+  /* blueprint grid — the engineering texture behind every big ask */
+  background-image:
+    linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 264px 264px, 264px 264px, 44px 44px, 44px 44px;
 }
 .band--split {
   display: grid;
