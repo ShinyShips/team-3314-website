@@ -1,0 +1,14 @@
+---
+// Editorial pull-quote band — the one serif-italic, mixed-case moment in an
+// otherwise uppercase Archivo/mono system. Use sparingly: one per page.
+const { quote, name, role, white = false } = Astro.props;
+---
+<section class={white ? 'quote-band quote-band--white reveal' : 'quote-band reveal'}>
+  <blockquote class="quote-band__q">
+    <p class="quote-band__text">&ldquo;{quote}&rdquo;</p>
+    <footer class="quote-band__attr">
+      <span class="quote-band__name">{name}</span>
+      <span class="quote-band__role">{role}</span>
+    </footer>
+  </blockquote>
+</section>

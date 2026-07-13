@@ -15,6 +15,7 @@
   --pad-x: clamp(20px, 4vw, 48px);
   --font-display: 'Archivo', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
   --ease-lift: cubic-bezier(.22, .61, .36, 1);
 }
 
@@ -836,6 +837,69 @@ input:focus, textarea:focus, select:focus {
 .archive__row:hover { background: #fff; }
 .archive__row:hover .archive__game,
 .archive__row:hover .archive__arrow { color: var(--maroon); }
+
+/* ---------- pull quotes (the serif-italic editorial moment) ---------- */
+
+.quote-band {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(56px, 8vw, 104px) var(--pad-x);
+  display: flex;
+  justify-content: center;
+}
+.quote-band--white { background: #fff; }
+.quote-band__q {
+  margin: 0;
+  max-width: 880px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 26px;
+  text-align: center;
+}
+.quote-band__text {
+  margin: 0;
+  font: italic 500 clamp(23px, 3.2vw, 33px)/1.4 var(--font-serif);
+  color: var(--ink);
+  letter-spacing: -.005em;
+  text-wrap: pretty;
+}
+.quote-band__attr { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.quote-band__name { font: 600 12.5px var(--font-mono); color: var(--maroon); letter-spacing: .12em; }
+.quote-band__role { font: 500 11px var(--font-mono); color: var(--muted); letter-spacing: .08em; }
+
+/* smaller left-aligned variant beside the interview video (About) */
+.words__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.video-embed {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  display: block;
+  background: var(--hero-base);
+}
+.words__quote { display: flex; flex-direction: column; gap: 20px; }
+.words__quote .quote-band__text { font-size: clamp(20px, 2.4vw, 26px); text-align: left; }
+.words__quote .quote-band__attr { align-items: flex-start; }
+
+/* quote inside a maroon band (About pipeline — Kristia) */
+.band-quote {
+  margin: 4px 0 0;
+  border-left: 2px solid rgba(255,255,255,.45);
+  padding-left: 20px;
+  max-width: 440px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.band-quote__text {
+  margin: 0;
+  font: italic 500 19px/1.5 var(--font-serif);
+  color: rgba(255,255,255,.92);
+  text-wrap: pretty;
+}
+.band-quote__attr { font: 500 11px var(--font-mono); color: rgba(255,255,255,.6); letter-spacing: .08em; }
 
 /* ---------- press strip ---------- */
 
