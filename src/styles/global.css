@@ -1261,13 +1261,21 @@ button.ti-cell:hover { background: var(--paper); }
 }
 .ti-gate__lede { margin: 0; font: 400 15px/1.6 var(--font-display); color: var(--body); text-wrap: pretty; }
 .ti-gate__form { display: flex; flex-wrap: wrap; gap: 10px; }
+.ti-gate__field { position: relative; flex: 1 1 200px; display: flex; }
 .ti-gate__input {
-  flex: 1 1 200px;
-  padding: 12px 14px;
+  width: 100%;
+  padding: 12px 60px 12px 14px;
   font: 500 13px var(--font-mono); letter-spacing: .06em;
   color: var(--ink); background: #fff;
   border: 1px solid var(--line); border-radius: 2px;
 }
+.ti-gate__peek {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  font: 600 11px var(--font-mono); letter-spacing: .08em;
+  color: var(--muted); background: none; border: 0;
+  padding: 8px; cursor: pointer;
+}
+.ti-gate__peek:hover { color: var(--maroon); }
 .ti-gate__input:focus { outline: 2px solid var(--maroon); outline-offset: 1px; }
 .ti-gate__err { margin: 0; font: 600 12px var(--font-mono); color: var(--maroon); letter-spacing: .08em; }
 .ti-lock { background: none; border: 0; padding: 0; cursor: pointer; }

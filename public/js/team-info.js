@@ -528,15 +528,29 @@
       'These documents are for team members and families. Enter the team password to view them — ask a mentor or coach if you need it.'));
 
     var form = el('form', 'ti-gate__form');
+    var field = el('div', 'ti-gate__field');
     var input = el('input', 'ti-gate__input');
     input.type = 'password';
     input.name = 'team-password';
     input.placeholder = 'TEAM PASSWORD';
     input.setAttribute('aria-label', 'Team password');
     input.autocomplete = 'off';
+    var peek = el('button', 'ti-gate__peek', 'SHOW');
+    peek.type = 'button';
+    peek.setAttribute('aria-label', 'Show password');
+    peek.setAttribute('aria-pressed', 'false');
+    peek.addEventListener('click', function () {
+      var show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      peek.textContent = show ? 'HIDE' : 'SHOW';
+      peek.setAttribute('aria-pressed', String(show));
+      input.focus();
+    });
+    field.appendChild(input);
+    field.appendChild(peek);
     var btn = el('button', 'btn', 'UNLOCK →');
     btn.type = 'submit';
-    form.appendChild(input);
+    form.appendChild(field);
     form.appendChild(btn);
     box.appendChild(form);
 
