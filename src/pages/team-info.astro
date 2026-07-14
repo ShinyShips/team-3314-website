@@ -88,8 +88,18 @@ const subscribeUrl = `https://calendar.google.com/calendar/render?cid=${calendar
     <p class="ti-note">Documents open in Google Drive. Can&rsquo;t find something? <a class="mono-link" href={folderUrl} target="_blank" rel="noopener">BROWSE THE FULL FOLDER &#8599;</a></p>
   </section>
 
+  <!-- PROTECTED DOCUMENTS — stays hidden unless PROTECTED is configured in
+       public/js/team-info.js (see scripts/protect-docs.mjs / README). -->
+  <section class="section section--white reveal" id="ti-protected" hidden>
+    <div class="section-head">
+      <h2 class="section-title">Team-only documents</h2>
+      <span class="kicker">PASSWORD REQUIRED</span>
+    </div>
+    <div id="ti-docs-protected" aria-live="polite"></div>
+  </section>
+
   <!-- NEXT PAGE CTA -->
-  <section class="next next--white reveal">
+  <section class="next reveal">
     <div class="next__label">
       <p class="eyebrow eyebrow--muted">NEXT</p>
       <p class="next__title">Questions? Talk to the team</p>

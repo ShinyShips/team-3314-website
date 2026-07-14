@@ -3,5 +3,8 @@ dist/
 .astro/
 .claude/settings.local.json
 
+# Local credentials for scripts/docs-dev.mjs — never commit
+.env
+
 # Raw/source media that never ships — web renditions live in public/assets
 media/

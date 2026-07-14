@@ -11,12 +11,13 @@ and the page updates within moments.
 
 ## ⚠️ The one rule
 
-**Everything on this page is public on the internet.** Anyone in the world
-can open these documents and see these events. Never put anything in the
-calendar or the Drive folder that contains personal information: no rosters
-with phone numbers or emails, no medical forms, no home addresses, no
-permission slips that have been filled in. Blank forms are fine; filled-in
-ones are not.
+**The calendar and the Team Website Documents folder are public on the
+internet.** Anyone in the world can open those documents and see those
+events. Never put anything there that contains personal information: no
+rosters with phone numbers or emails, no medical forms, no home addresses,
+no permission slips that have been filled in. Blank forms are fine;
+filled-in ones are not. (There is one exception — the password-protected
+folder described in "Team-only documents" below.)
 
 ## Adding or changing a date
 
@@ -44,6 +45,26 @@ The file appears on the website automatically, listed by name.
 - **To remove a document from the site**, just delete it (or move it out of
   the folder).
 - **Renaming** a file or folder renames it on the site too.
+
+## Team-only documents (the password section)
+
+Below the public documents there's a **Team-only documents** section that
+asks for the team password. Files in the **private** Drive folder (a
+separate folder from Team Website Documents) show up there, with the same
+subfolder-becomes-heading rules as above.
+
+- Unlike the public folder, the private folder is **not shared with the
+  world** — the website itself fetches the files, and only after someone
+  types the team password. Good for handbooks, meeting notes, and internal
+  schedules.
+- Google Docs, Sheets, and Slides open as PDF snapshots. **Google Forms
+  won't appear** in this section — keep forms in the public folder.
+- Remember the password is shared with the whole team, so it's only as
+  private as the group that knows it. Truly sensitive personal information
+  (medical details, payment info) still doesn't belong on any website —
+  keep that in Drive with named-person sharing only.
+- Changing the password is a settings change for whoever manages the
+  website — email admin@frc3314.com.
 
 ## If something looks wrong
 

@@ -28,6 +28,8 @@ src/data/         seasons.json, sponsors.json, universities.json, employers.json
 src/styles/       global.css — all design tokens and classes
 public/assets/    images (already web-optimized)
 public/js/        site-fx.js, team-info.js (live calendar + Drive docs)
+netlify/functions/ docs.mjs — /api/docs, the password-gated documents API
+scripts/          docs-dev.mjs — local test server for the function
 docs/             updating-team-info.md (teacher guide), adr/ (decision records)
 ```
 
@@ -88,6 +90,50 @@ One-time Google setup (as admin@frc3314.com):
 
 If the key is missing or a fetch fails, the page degrades to direct
 "open in Google Calendar / browse the folder" links instead of breaking.
+
+### Password-protected documents ("Team-only documents")
+
+A second documents section is gated behind a team password, served by a
+Netlify Function (`netlify/functions/docs.mjs`, reachable at `/api/docs`;
+see `docs/adr/0002`). The private Drive folder is **not link-shared at
+all** — a Google service account is the only outside identity with access.
+The function checks the password, lists the folder, and proxies every file
+download (native Google Docs/Sheets/Slides are exported as PDF), so a
+forwarded link is useless without an unlocked session. Google Forms can't
+be proxied and are left out of the listing — keep forms in the public
+folder.
+
+One-time setup (as admin@frc3314.com, in the same Cloud project as the
+API key):
+
+1. **Service account**: IAM & Admin → Service Accounts → Create
+   (e.g. `site-docs-reader`, no roles needed) → Keys → Add key →
+   **JSON** → download.
+2. **Private folder**: create a Drive folder for private documents (NOT
+   inside the public team folder, no link sharing) and share it with the
+   service account's email address (`...@...iam.gserviceaccount.com`) as
+   **Viewer**.
+3. **Netlify env vars** (Site settings → Environment variables):
+   - `DOCS_PASSWORD` — the team password
+   - `DOCS_FOLDER_ID` — the private folder's ID (from its Drive URL)
+   - `GOOGLE_SERVICE_ACCOUNT` — the downloaded JSON key, pasted whole
+4. Redeploy. To rotate the password, change `DOCS_PASSWORD` and redeploy —
+   open sessions are invalidated automatically.
+
+Set `PROTECTED_DOCS = false` in `public/js/team-info.js` to hide the
+section. If the env vars are missing the API answers 503 and the gate
+shows a friendly "couldn't be reached" message.
+
+Local testing (`astro dev` can't run functions):
+`node scripts/docs-dev.mjs --mock` serves http://localhost:8888 with a
+fake Drive (password `mockpass`), proxying everything else to the Astro
+dev server on :4321. Without `--mock` it uses real values from a
+gitignored `.env` file (same three variables).
+
+Know the ceiling: files are now genuinely private to Drive, but anyone
+who has the team password can open them, and passwords shared with a
+whole team travel. Still don't post highly sensitive personal data
+(medical forms, payment info).
 
 The quick-info block (meeting times, room, channels) is static HTML in
 `src/pages/team-info.astro` — look for the `PLACEHOLDER` comments.

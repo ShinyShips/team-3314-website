@@ -14,12 +14,24 @@
   var API_KEY = 'AIzaSyCcE8R1yTaVXxZUoTLAczU2910CbeSnWbM';
   var CALENDAR_ID = 'c_c959a4578dd5c16bbe9eeee35486f91e59a4325a9f30b016bdf8f5dfa5079e3f@group.calendar.google.com';
   var FOLDER_ID = '1W_8LpI5kH1tUo1uloYdfw5_pGWILaQnc';
+  /* PROTECTED_DOCS: shows the password-gated "Team-only documents" section,
+     served by the Netlify function at /api/docs (netlify/functions/docs.mjs).
+     The private folder and password live in Netlify environment variables —
+     nothing about them ships to the browser. Setup steps in README.md;
+     set to false to hide the section. */
+  var PROTECTED_DOCS = true;
   var TIME_ZONE = 'America/New_York';
   /* ======================================================================= */
 
   var calRoot = document.getElementById('ti-calendar');
   var docsRoot = document.getElementById('ti-docs');
-  if (!calRoot && !docsRoot) return;
+  var protRoot = document.getElementById('ti-docs-protected');
+  if (!calRoot && !docsRoot && !protRoot) return;
+
+  // Initialized here, not in the protected-docs block below: the init call
+  // runs mid-file, before that block's var assignments would execute.
+  var UNLOCK_KEY = 'ti-docs-unlocked';
+  var DOCS_API = '/api/docs';
 
   var CAL_URL = 'https://calendar.google.com/calendar/embed?src=' +
     encodeURIComponent(CALENDAR_ID) + '&ctz=' + encodeURIComponent(TIME_ZONE);
@@ -168,6 +180,11 @@
       }).catch(calFail);
     }
 
+    /* Long horizons fill the page, so the list starts at ~LIST_CHUNK events
+       and grows by the same amount per "show more" click. New chunks append
+       in place (no re-render), so expanded events stay expanded. */
+    var LIST_CHUNK = 10;
+
     function paintList(evs) {
       calRoot.innerHTML = '';
       if (!evs.length) {
@@ -175,19 +192,39 @@
         return;
       }
       var list = el('div', 'ti-list');
-      var lastKey = null, dayWrap = null;
-      evs.forEach(function (ev) {
-        if (ev.key !== lastKey) {
-          lastKey = ev.key;
-          dayWrap = el('div', 'ti-day');
-          var label = fmtKey(ev.key, { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase();
-          if (ev.key === todayKey) label += ' · TODAY';
-          dayWrap.appendChild(el('p', 'ti-day__head', label));
-          list.appendChild(dayWrap);
-        }
-        dayWrap.appendChild(eventRow(ev));
-      });
       calRoot.appendChild(list);
+      var idx = 0, lastKey = null, dayWrap = null;
+      var more = el('button', 'ti-more');
+      more.type = 'button';
+      more.addEventListener('click', addChunk);
+
+      function addChunk() {
+        var target = idx + LIST_CHUNK;
+        while (idx < evs.length) {
+          var ev = evs[idx];
+          if (ev.key !== lastKey) {
+            // Only cut between days, so a day's events never get split.
+            if (idx >= target) break;
+            lastKey = ev.key;
+            dayWrap = el('div', 'ti-day');
+            var label = fmtKey(ev.key, { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase();
+            if (ev.key === todayKey) label += ' · TODAY';
+            dayWrap.appendChild(el('p', 'ti-day__head', label));
+            list.appendChild(dayWrap);
+          }
+          dayWrap.appendChild(eventRow(ev));
+          idx++;
+        }
+        var remaining = evs.length - idx;
+        if (remaining > 0) {
+          more.textContent = 'SHOW MORE — ' + remaining + ' UPCOMING ' +
+            (remaining === 1 ? 'EVENT' : 'EVENTS') + ' HIDDEN';
+          calRoot.appendChild(more);
+        } else if (more.parentNode) {
+          more.parentNode.removeChild(more);
+        }
+      }
+      addChunk();
     }
 
     function eventRow(ev) {
@@ -348,6 +385,7 @@
 
   /* ---------- documents section ---------- */
   if (docsRoot) initDocs();
+  if (protRoot) initProtectedDocs();
 
   function isFolder(f) { return f.mimeType === 'application/vnd.google-apps.folder'; }
 
@@ -366,40 +404,44 @@
     }).then(function (data) { return data.files || []; });
   }
 
-  function initDocs() {
-    if (!configured) {
-      fallback(docsRoot, 'The live document list isn’t connected yet.',
-        'BROWSE THE TEAM FOLDER', FOLDER_URL);
-      return;
-    }
-    docsRoot.innerHTML = '';
-    docsRoot.appendChild(el('p', 'ti-status', 'LOADING DOCUMENTS…'));
+  function loadDocs(folderId, root, onFail) {
+    root.innerHTML = '';
+    root.appendChild(el('p', 'ti-status', 'LOADING DOCUMENTS…'));
 
-    driveList("'" + FOLDER_ID + "' in parents and trashed = false").then(function (items) {
+    driveList("'" + folderId + "' in parents and trashed = false").then(function (items) {
       var folders = items.filter(isFolder);
       var rootFiles = items.filter(function (f) { return !isFolder(f); });
       return Promise.all(folders.map(function (f) {
         return driveList("'" + f.id + "' in parents and trashed = false").then(function (kids) {
           return { name: f.name, files: kids.filter(function (k) { return !isFolder(k); }) };
         });
-      })).then(function (sections) { paintDocs(sections, rootFiles); });
-    }).catch(function () {
+      })).then(function (sections) { paintDocs(root, sections, rootFiles); });
+    }).catch(onFail);
+  }
+
+  function initDocs() {
+    if (!configured) {
+      fallback(docsRoot, 'The live document list isn’t connected yet.',
+        'BROWSE THE TEAM FOLDER', FOLDER_URL);
+      return;
+    }
+    loadDocs(FOLDER_ID, docsRoot, function () {
       fallback(docsRoot, 'The document list couldn’t load here just now.',
         'BROWSE THE TEAM FOLDER', FOLDER_URL);
     });
   }
 
-  function paintDocs(sections, rootFiles) {
-    docsRoot.innerHTML = '';
+  function paintDocs(root, sections, rootFiles) {
+    root.innerHTML = '';
     sections = sections.filter(function (s) { return s.files.length; });
 
     if (!sections.length && !rootFiles.length) {
-      docsRoot.appendChild(el('p', 'ti-status', 'NO DOCUMENTS HAVE BEEN POSTED YET.'));
+      root.appendChild(el('p', 'ti-status', 'NO DOCUMENTS HAVE BEEN POSTED YET.'));
       return;
     }
-    sections.forEach(function (s) { docsRoot.appendChild(docSection(s.name, s.files)); });
+    sections.forEach(function (s) { root.appendChild(docSection(s.name, s.files)); });
     if (rootFiles.length) {
-      docsRoot.appendChild(docSection(sections.length ? 'Other documents' : null, rootFiles));
+      root.appendChild(docSection(sections.length ? 'Other documents' : null, rootFiles));
     }
   }
 
@@ -442,6 +484,133 @@
     }
     a.appendChild(el('span', 'ti-doc__chip', chip));
     return a;
+  }
+
+  /* ---------- protected documents ----------
+     Backed by the Netlify function at /api/docs (netlify/functions/docs.mjs).
+     The password check, the private folder's identity, and every file fetch
+     happen server-side; the unlocked session rides an HttpOnly cookie this
+     script can't even read. The private folder is NOT link-shared — a
+     Google service account is the only outside identity with access — so a
+     forwarded file URL is useless without the cookie. The sessionStorage
+     flag below is just UI state ("try the listing before showing the
+     gate"); holding it proves nothing without the cookie. */
+
+  function initProtectedDocs() {
+    if (!PROTECTED_DOCS) return;
+    var section = document.getElementById('ti-protected');
+    if (section) section.hidden = false;
+
+    var flag = null;
+    try { flag = sessionStorage.getItem(UNLOCK_KEY); } catch (e) { /* blocked storage */ }
+    if (flag) fetchListing();
+    else paintGate();
+  }
+
+  function fetchListing() {
+    protRoot.innerHTML = '';
+    protRoot.appendChild(el('p', 'ti-status', 'LOADING DOCUMENTS…'));
+    fetch(DOCS_API).then(function (r) {
+      if (r.status === 401) { relock(); return null; }
+      if (!r.ok) throw new Error('docs API ' + r.status);
+      return r.json();
+    }).then(function (listing) {
+      if (listing) paintProtected(listing);
+    }).catch(function () {
+      relock('THE DOCUMENTS COULDN’T LOAD — TRY UNLOCKING AGAIN.');
+    });
+  }
+
+  function paintGate(msg) {
+    protRoot.innerHTML = '';
+    var box = el('div', 'ti-gate');
+    box.appendChild(el('p', 'ti-gate__lede',
+      'These documents are for team members and families. Enter the team password to view them — ask a mentor or coach if you need it.'));
+
+    var form = el('form', 'ti-gate__form');
+    var input = el('input', 'ti-gate__input');
+    input.type = 'password';
+    input.name = 'team-password';
+    input.placeholder = 'TEAM PASSWORD';
+    input.setAttribute('aria-label', 'Team password');
+    input.autocomplete = 'off';
+    var btn = el('button', 'btn', 'UNLOCK →');
+    btn.type = 'submit';
+    form.appendChild(input);
+    form.appendChild(btn);
+    box.appendChild(form);
+
+    var err = el('p', 'ti-gate__err', msg || '');
+    err.hidden = !msg;
+    box.appendChild(err);
+    protRoot.appendChild(box);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!input.value || btn.disabled) return;
+      err.hidden = true;
+      btn.disabled = true;
+      btn.textContent = 'CHECKING…';
+      fetch(DOCS_API, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ password: input.value })
+      }).then(function (r) {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      }).then(function (listing) {
+        try { sessionStorage.setItem(UNLOCK_KEY, '1'); } catch (e2) { /* fine */ }
+        paintProtected(listing);
+      }).catch(function (failure) {
+        btn.disabled = false;
+        btn.textContent = 'UNLOCK →';
+        err.textContent = failure.message === '401'
+          ? 'THAT PASSWORD DIDN’T WORK — TRY AGAIN.'
+          : 'THE UNLOCK SERVICE COULDN’T BE REACHED — TRY AGAIN IN A MOMENT.';
+        err.hidden = false;
+        input.select();
+      });
+    });
+  }
+
+  function relock(msg) {
+    try { sessionStorage.removeItem(UNLOCK_KEY); } catch (e) { /* fine */ }
+    paintGate(msg);
+  }
+
+  function paintProtected(listing) {
+    protRoot.innerHTML = '';
+    var docs = el('div');
+    protRoot.appendChild(docs);
+
+    // Reuse the public renderer: point each row at the proxy instead of a
+    // Drive link (these files have no shareable Drive links).
+    function withLinks(files) {
+      return files.map(function (f) {
+        return {
+          name: f.name, mimeType: f.mimeType, modifiedTime: f.modifiedTime,
+          webViewLink: DOCS_API + '?file=' + encodeURIComponent(f.id)
+        };
+      });
+    }
+    paintDocs(docs,
+      (listing.sections || []).map(function (s) { return { name: s.name, files: withLinks(s.files) }; }),
+      withLinks(listing.rootFiles || []));
+
+    var note = el('p', 'ti-note');
+    note.appendChild(document.createTextNode('Unlocked for this visit.  ·  '));
+    var lock = el('button', 'mono-link ti-lock', 'LOCK AGAIN');
+    lock.type = 'button';
+    lock.addEventListener('click', function () {
+      fetch(DOCS_API, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ lock: true })
+      }).catch(function () { /* the cookie’s own expiry still applies */ });
+      relock();
+    });
+    note.appendChild(lock);
+    protRoot.appendChild(note);
   }
 
 })();
